@@ -1,0 +1,4729 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>حسام للطباعة والدعاية</title>
+  <meta name="description" content="موقع أعمال وخدمات لمطبعة حسام." />
+  <script defer src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root {
+      --bg: #eef3f8;
+      --surface: rgba(255, 255, 255, 0.76);
+      --surface-strong: #ffffff;
+      --text: #193345;
+      --muted: #64717c;
+      --primary: #236f98;
+      --primary-strong: #155a7d;
+      --accent: #d2a76c;
+      --accent-strong: #b98b4f;
+      --coral: #d84f4f;
+      --teal: #44b8bd;
+      --line: rgba(31, 62, 82, 0.14);
+      --shadow: 0 18px 45px rgba(33, 55, 72, 0.14);
+      --radius: 8px;
+      --font: "Segoe UI", Tahoma, Arial, sans-serif;
+      --text-scale: 1;
+      --header-h: 76px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 14% 12%, rgba(68, 184, 189, 0.14), transparent 28%),
+        radial-gradient(circle at 86% 8%, rgba(210, 167, 108, 0.18), transparent 26%),
+        linear-gradient(180deg, color-mix(in srgb, var(--bg) 92%, #ffffff 8%), var(--bg));
+      font-family: var(--font);
+      font-size: calc(16px * var(--text-scale));
+      overflow-x: hidden;
+    }
+
+    body.dark {
+      --bg: #121a21;
+      --surface: rgba(25, 40, 51, 0.72);
+      --surface-strong: #192833;
+      --text: #edf6fb;
+      --muted: #aab9c4;
+      --line: rgba(255, 255, 255, 0.14);
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.32);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .app-shell {
+      min-height: 100vh;
+    }
+
+    .glass {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      min-height: var(--header-h);
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--surface-strong) 78%, transparent);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    .header-inner {
+      width: min(1180px, calc(100% - 32px));
+      min-height: var(--header-h);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      padding: 8px 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      order: 1;
+      flex: 0 0 auto;
+      min-width: 220px;
+      max-width: 280px;
+      justify-content: flex-start;
+    }
+
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      color: #fff;
+      font-weight: 900;
+      letter-spacing: 0;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, var(--primary), var(--teal)),
+        linear-gradient(45deg, transparent 38%, rgba(255, 255, 255, 0.32) 38% 48%, transparent 48%);
+      box-shadow: 0 10px 26px rgba(31, 111, 152, 0.22);
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-copy {
+      min-width: 0;
+      line-height: 1.15;
+    }
+
+    .brand-title {
+      display: block;
+      max-width: 185px;
+      color: var(--primary);
+      font-size: 1.04rem;
+      font-weight: 850;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-tagline {
+      color: var(--muted);
+      font-size: 0.78rem;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1 1 520px;
+      order: 2;
+      flex-wrap: wrap;
+      gap: 4px;
+      row-gap: 6px;
+      min-width: 280px;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link,
+    .tool-btn,
+    .icon-btn {
+      border: 0;
+      color: var(--text);
+      background: transparent;
+    }
+
+    .nav-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 42px;
+      padding: 0 12px;
+      border-radius: var(--radius);
+      font-size: 0.93rem;
+      font-weight: 750;
+      white-space: nowrap;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 10%, transparent);
+    }
+
+    .nav-link.active::after {
+      content: "";
+      position: absolute;
+      right: 16px;
+      left: 16px;
+      bottom: 2px;
+      height: 3px;
+      border-radius: 3px;
+      background: var(--accent);
+    }
+
+    .subnav {
+      position: absolute;
+      top: 100%;
+      right: 50%;
+      min-width: 240px;
+      padding: 16px 10px 10px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(50%) translateY(-8px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      border-radius: 8px;
+      background: var(--surface-strong);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .subnav::before {
+      content: "";
+      position: absolute;
+      top: 6px;
+      right: calc(50% - 8px);
+      width: 14px;
+      height: 14px;
+      border-top: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      background: var(--surface-strong);
+      transform: rotate(-45deg);
+    }
+
+    .nav-tab-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      position: relative;
+    }
+
+    .nav-edit-mini,
+    .subnav-edit-mini,
+    .nav-delete-mini,
+    .subnav-delete-mini {
+      width: 34px;
+      height: 34px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      color: var(--primary);
+      background: color-mix(in srgb, var(--surface-strong) 82%, transparent);
+    }
+
+    .nav-edit-mini:hover,
+    .subnav-edit-mini:hover {
+      color: #fff;
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .nav-delete-mini:hover,
+    .subnav-delete-mini:hover {
+      color: #fff;
+      background: var(--coral);
+      border-color: var(--coral);
+    }
+
+    .subnav-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .subnav-row:last-of-type {
+      border-bottom: 0;
+    }
+
+    .nav-item:hover .subnav,
+    .nav-item:focus-within .subnav,
+    .nav-item.subnav-pinned .subnav {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(50%) translateY(0);
+    }
+
+    .nav-item.subnav-pinned > .nav-tab-wrap .nav-link {
+      color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 10%, transparent);
+    }
+
+    .nav-item[draggable="true"],
+    .subnav-row[draggable="true"] {
+      cursor: grab;
+      user-select: none;
+    }
+
+    .nav-item.dragging,
+    .subnav-row.dragging {
+      opacity: 0.5;
+      cursor: grabbing;
+    }
+
+    .nav-item.drag-over > .nav-tab-wrap,
+    .subnav-row.drag-over {
+      outline: 2px dashed var(--primary);
+      outline-offset: 3px;
+      background: color-mix(in srgb, var(--primary) 8%, transparent);
+      border-radius: var(--radius);
+    }
+
+    .subnav a {
+      display: block;
+      flex: 1;
+      padding: 12px 14px;
+      color: var(--muted);
+      font-weight: 650;
+    }
+
+    .subnav a:last-child {
+      border-bottom: 0;
+    }
+
+    .subnav a:hover {
+      color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 7%, transparent);
+    }
+
+    .nav-quick-add,
+    .subnav-add {
+      display: inline-grid;
+      place-items: center;
+      border: 1px dashed color-mix(in srgb, var(--primary) 42%, var(--line));
+      color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 8%, transparent);
+    }
+
+    .nav-quick-add {
+      width: 42px;
+      min-width: 42px;
+      height: 42px;
+      padding: 0;
+      border-radius: var(--radius);
+    }
+
+    .subnav-add {
+      width: 100%;
+      height: 42px;
+      margin-top: 8px;
+      border-radius: var(--radius);
+    }
+
+    .subnav-add:hover,
+    .nav-quick-add:hover {
+      color: #fff;
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .header-tools {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      order: 3;
+      flex: 0 0 auto;
+      min-width: 0;
+      justify-content: flex-end;
+    }
+
+    .search-wrap {
+      position: relative;
+      width: min(190px, 20vw);
+    }
+
+    .search-input {
+      width: 100%;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      color: var(--text);
+      background: color-mix(in srgb, var(--surface-strong) 82%, transparent);
+      padding: 0 42px 0 12px;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: color-mix(in srgb, var(--primary) 55%, var(--line));
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 13%, transparent);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      width: 20px;
+      height: 20px;
+      pointer-events: none;
+    }
+
+    .search-results {
+      position: absolute;
+      z-index: 100;
+      top: calc(100% + 10px);
+      left: 0;
+      width: min(420px, calc(100vw - 32px));
+      max-height: 420px;
+      overflow: auto;
+      padding: 8px;
+      border-radius: 8px;
+      background: var(--surface-strong);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      display: none;
+    }
+
+    .search-results.open {
+      display: block;
+    }
+
+    .search-result {
+      display: block;
+      padding: 12px;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+    }
+
+    .search-result:hover {
+      border-color: var(--line);
+      background: color-mix(in srgb, var(--primary) 7%, transparent);
+    }
+
+    .search-result strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--primary);
+    }
+
+    .search-result span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.6;
+    }
+
+    .tool-btn {
+      min-height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 14px;
+      border-radius: var(--radius);
+      font-weight: 800;
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(31, 111, 152, 0.22);
+    }
+
+    .tool-btn.secondary {
+      color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 10%, transparent);
+      box-shadow: none;
+    }
+
+    .tool-btn.accent {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(210, 167, 108, 0.26);
+    }
+
+    .tool-btn.ghost {
+      color: var(--text);
+      background: transparent;
+      border: 1px solid var(--line);
+      box-shadow: none;
+    }
+
+    .login-icon-btn {
+      width: 46px;
+      min-width: 46px;
+      padding: 0;
+    }
+
+    .login-icon-btn .btn-text {
+      display: none;
+    }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--surface-strong) 78%, transparent);
+    }
+
+    .icon-btn:hover {
+      color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 8%, transparent);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+    }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      min-height: min(680px, calc(100vh - var(--header-h)));
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.24)),
+        linear-gradient(180deg, color-mix(in srgb, var(--primary) 8%, transparent), transparent 52%),
+        var(--bg);
+    }
+
+    body.dark .hero {
+      background:
+        linear-gradient(90deg, rgba(18, 26, 33, 0.7), rgba(18, 26, 33, 0.24)),
+        linear-gradient(180deg, color-mix(in srgb, var(--primary) 16%, transparent), transparent 52%),
+        var(--bg);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      opacity: 0.55;
+      background:
+        linear-gradient(168deg, transparent 0 24%, rgba(35, 111, 152, 0.12) 24% 35%, transparent 35% 100%),
+        linear-gradient(14deg, transparent 0 61%, rgba(210, 167, 108, 0.14) 61% 70%, transparent 70% 100%);
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(330px, 0.94fr) minmax(360px, 1.06fr);
+      gap: 36px;
+      align-items: center;
+      padding: 58px 0 84px;
+    }
+
+    .hero-copy {
+      max-width: 650px;
+      justify-self: end;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: var(--radius);
+      color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 10%, transparent);
+      font-weight: 850;
+      font-size: 0.88rem;
+    }
+
+    .hero h1 {
+      margin: 20px 0 14px;
+      color: var(--primary);
+      font-size: clamp(2.2rem, 5.2vw, 4.7rem);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(1.04rem, 1.6vw, 1.35rem);
+      line-height: 1.9;
+    }
+
+    .hero-note {
+      margin-top: 22px;
+      padding: 18px 20px;
+      color: var(--muted);
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--surface-strong) 72%, transparent);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 26px;
+    }
+
+    .hero-art {
+      position: relative;
+      min-height: 430px;
+      display: grid;
+      place-items: center;
+    }
+
+    .hero-image,
+    .visual-print {
+      width: min(100%, 560px);
+      aspect-ratio: 1.3;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      background: linear-gradient(135deg, #f9fbfd, #dbe9f2);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .visual-print {
+      position: relative;
+      isolation: isolate;
+      transform: rotate(-2deg);
+    }
+
+    .visual-print::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.75), transparent 40%),
+        linear-gradient(30deg, rgba(35, 111, 152, 0.18), transparent 50%),
+        radial-gradient(circle at 72% 22%, rgba(210, 167, 108, 0.38), transparent 24%);
+    }
+
+    .print-stack {
+      position: absolute;
+      width: 58%;
+      height: 62%;
+      left: 12%;
+      bottom: 12%;
+      transform: rotate(7deg);
+    }
+
+    .print-sheet {
+      position: absolute;
+      inset: auto;
+      border-radius: 7px;
+      box-shadow: 0 14px 28px rgba(20, 40, 55, 0.18);
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .print-sheet.one {
+      width: 70%;
+      height: 58%;
+      left: 11%;
+      bottom: 0;
+      background:
+        linear-gradient(135deg, #fff 0 36%, #f4d1d1 36% 60%, #fff 60%),
+        linear-gradient(90deg, var(--primary), var(--accent));
+    }
+
+    .print-sheet.two {
+      width: 72%;
+      height: 58%;
+      left: 0;
+      bottom: 20%;
+      transform: rotate(-8deg);
+      background:
+        linear-gradient(135deg, #ffffff 0 42%, color-mix(in srgb, var(--teal) 48%, #fff) 42% 64%, #ffffff 64%),
+        linear-gradient(90deg, var(--primary), var(--accent));
+    }
+
+    .print-sheet.three {
+      width: 76%;
+      height: 58%;
+      right: 0;
+      bottom: 36%;
+      transform: rotate(11deg);
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--primary) 72%, #111) 0 45%, #fff 45% 62%, var(--accent) 62%),
+        linear-gradient(90deg, #fff, #e9f5f8);
+    }
+
+    .stamp {
+      position: absolute;
+      top: 18%;
+      right: 14%;
+      width: 88px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      font-weight: 900;
+      background: var(--primary);
+      border: 8px solid rgba(255, 255, 255, 0.72);
+      box-shadow: 0 10px 24px rgba(35, 111, 152, 0.25);
+    }
+
+    .hero-chip {
+      position: absolute;
+      z-index: 2;
+      right: 2%;
+      bottom: 8%;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-weight: 850;
+      color: var(--primary);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.62);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .content-section {
+      position: relative;
+      padding: 66px 0;
+    }
+
+    .section-heading {
+      max-width: 840px;
+      margin: 0 auto 34px;
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      color: var(--primary);
+      font-size: clamp(1.7rem, 3vw, 2.65rem);
+      line-height: 1.25;
+    }
+
+    .section-heading h2 .accent-word {
+      color: var(--accent);
+    }
+
+    .section-heading p {
+      margin: 12px auto 0;
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 1.02rem;
+    }
+
+    .section-heading .decor {
+      width: 128px;
+      height: 4px;
+      margin: 16px auto 0;
+      border-radius: 8px;
+      background: linear-gradient(90deg, var(--accent), var(--primary));
+    }
+
+    .feature-strip {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: -54px;
+      padding: 20px;
+      border-radius: 8px;
+      background: var(--surface-strong);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 72px;
+      padding: 8px;
+      border-left: 1px solid var(--line);
+    }
+
+    .feature-item:last-child {
+      border-left: 0;
+    }
+
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 10%, transparent);
+      outline: 4px solid color-mix(in srgb, var(--accent) 32%, transparent);
+      flex: 0 0 auto;
+    }
+
+    .feature-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .feature-item strong {
+      display: block;
+      color: var(--primary);
+      font-size: 1.05rem;
+    }
+
+    .feature-item span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.86rem;
+      margin-top: 2px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .content-card,
+    .work-card,
+    .message-card,
+    .builder-card {
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--surface-strong) 88%, transparent);
+      border: 1px solid var(--line);
+      box-shadow: 0 14px 36px rgba(33, 55, 72, 0.08);
+      overflow: hidden;
+    }
+
+    .content-card {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .content-card:hover,
+    .work-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .card-media {
+      position: relative;
+      aspect-ratio: 1.35;
+      overflow: hidden;
+      background: color-mix(in srgb, var(--primary) 8%, #fff);
+    }
+
+    .card-media .inner-thumb {
+      position: absolute;
+      left: 12px;
+      bottom: 12px;
+      width: 78px;
+      height: 58px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 3px solid rgba(255, 255, 255, 0.92);
+      box-shadow: 0 12px 24px rgba(18, 38, 52, 0.2);
+      background: #fff;
+    }
+
+    .card-media.square {
+      aspect-ratio: 1;
+    }
+
+    .card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0 0 8px 8px;
+      transition: transform 0.22s ease;
+    }
+
+    .content-card:hover .card-media img,
+    .work-card:hover img {
+      transform: scale(1.035);
+    }
+
+    .add-card-tile {
+      min-height: 250px;
+      display: grid;
+      place-items: center;
+      gap: 10px;
+      border: 1px dashed color-mix(in srgb, var(--primary) 45%, var(--line));
+      border-radius: var(--radius);
+      color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 7%, var(--surface-strong));
+      font-weight: 850;
+    }
+
+    .add-card-tile i {
+      width: 30px;
+      height: 30px;
+    }
+
+    .add-card-tile:hover {
+      color: #fff;
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .card-body {
+      padding: 22px;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .card-body h3,
+    .split-copy h2 {
+      margin: 0 0 12px;
+      color: var(--primary);
+      line-height: 1.3;
+    }
+
+    .card-body p,
+    .split-copy p,
+    .text-body {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .reviews-panel,
+    .survey-panel {
+      display: grid;
+      grid-template-columns: minmax(300px, 0.85fr) minmax(320px, 1.15fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .review-form,
+    .survey-form,
+    .reviews-list {
+      border-radius: 8px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--surface-strong) 84%, transparent);
+      box-shadow: 0 14px 36px rgba(33, 55, 72, 0.08);
+    }
+
+    .rating-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      direction: ltr;
+      justify-content: center;
+      align-items: end;
+      padding: 8px 0 2px;
+    }
+
+    .rating-option {
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .rating-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .rating-option span {
+      display: grid;
+      justify-items: center;
+      gap: 4px;
+      min-width: 42px;
+      border: 0;
+      background: transparent;
+    }
+
+    .rating-option small {
+      color: var(--muted);
+      font-size: 0.74rem;
+      font-weight: 850;
+    }
+
+    .rating-option i,
+    .stars-display i {
+      color: color-mix(in srgb, var(--accent) 26%, var(--muted));
+      font-style: normal;
+      line-height: 1;
+      text-shadow: 0 5px 16px rgba(210, 167, 108, 0.18);
+      transition: color 0.16s ease, transform 0.16s ease, text-shadow 0.16s ease;
+    }
+
+    .rating-option i {
+      font-size: 2.25rem;
+    }
+
+    .rating-row:hover .rating-option i {
+      color: color-mix(in srgb, var(--accent) 18%, var(--muted));
+      transform: none;
+    }
+
+    .rating-row .rating-option:has(input:checked) i,
+    .rating-row .rating-option:has(input:checked) ~ .rating-option i,
+    .rating-row .rating-option:hover i,
+    .rating-row .rating-option:hover ~ .rating-option i {
+      color: #ffc400;
+      transform: translateY(-2px) scale(1.08);
+      text-shadow: 0 8px 20px rgba(255, 196, 0, 0.34);
+    }
+
+    .rating-row .rating-option:has(input:checked) small,
+    .rating-row .rating-option:has(input:checked) ~ .rating-option small,
+    .rating-row .rating-option:hover small,
+    .rating-row .rating-option:hover ~ .rating-option small {
+      color: var(--accent-strong);
+    }
+
+    .reviews-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .review-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--surface-strong) 90%, transparent);
+    }
+
+    .review-card strong {
+      display: block;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .review-stars {
+      color: var(--accent-strong);
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .stars-display {
+      display: inline-flex;
+      direction: ltr;
+      gap: 3px;
+      margin: 4px 0;
+    }
+
+    .stars-display i {
+      font-size: 1.18rem;
+    }
+
+    .stars-display i.lit {
+      color: #ffc400;
+      text-shadow: 0 5px 14px rgba(255, 196, 0, 0.32);
+    }
+
+    .review-delete-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: var(--radius);
+      color: #ff4f7b;
+      background: color-mix(in srgb, #ff4f7b 12%, transparent);
+      border-color: color-mix(in srgb, #ff4f7b 24%, var(--line));
+    }
+
+    .survey-responses {
+      margin-top: 16px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .survey-response {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: start;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--surface-strong) 90%, transparent);
+    }
+
+    .platform-settings-panel {
+      max-width: 780px;
+      margin-inline: auto;
+    }
+
+    .card-body .tool-btn {
+      margin-top: auto;
+      padding-inline: 18px;
+    }
+
+    .split-layout {
+      display: grid;
+      grid-template-columns: minmax(320px, 0.95fr) minmax(320px, 1.05fr);
+      gap: 28px;
+      align-items: center;
+    }
+
+    .split-layout.flip {
+      grid-template-columns: minmax(320px, 1.05fr) minmax(320px, 0.95fr);
+    }
+
+    .split-media {
+      position: relative;
+      min-height: 340px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      background: color-mix(in srgb, var(--primary) 10%, #fff);
+    }
+
+    .split-media img {
+      width: 100%;
+      height: 100%;
+      min-height: 340px;
+      object-fit: cover;
+    }
+
+    .split-media.image-only {
+      max-width: 980px;
+      min-height: min(560px, 70vh);
+      margin: 0 auto;
+    }
+
+    .split-copy {
+      padding: 28px;
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--surface-strong) 76%, transparent);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+
+    .split-copy h2 {
+      font-size: clamp(1.55rem, 2.6vw, 2.5rem);
+    }
+
+    .text-panel {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 28px;
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--surface-strong) 78%, transparent);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .text-panel h2 {
+      margin: 0 0 12px;
+      color: var(--primary);
+    }
+
+    .work-card {
+      position: relative;
+      aspect-ratio: 1.36;
+      cursor: pointer;
+    }
+
+    .work-card.square {
+      aspect-ratio: 1;
+    }
+
+    .work-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .work-card-caption {
+      position: absolute;
+      inset: auto 10px 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius);
+      color: #fff;
+      background: rgba(18, 33, 43, 0.64);
+      backdrop-filter: blur(12px);
+    }
+
+    .accordion-list {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1.1fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .accordion-tabs {
+      display: grid;
+      gap: 10px;
+    }
+
+    .accordion-tab {
+      width: 100%;
+      min-height: 58px;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      color: var(--text);
+      background: var(--surface-strong);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-weight: 850;
+      text-align: start;
+    }
+
+    .accordion-tab.active {
+      color: #fff;
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .accordion-preview {
+      min-height: 390px;
+      padding: 18px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--surface-strong) 82%, transparent);
+      box-shadow: var(--shadow);
+    }
+
+    .accordion-preview img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+
+    .accordion-preview h3 {
+      margin: 0 0 8px;
+      color: var(--primary);
+    }
+
+    .accordion-preview p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .admin-toolbar {
+      position: sticky;
+      z-index: 60;
+      top: var(--header-h);
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--surface-strong) 82%, transparent);
+      backdrop-filter: blur(16px);
+    }
+
+    .admin-toolbar-inner {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .admin-tabs {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .admin-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 38px;
+      padding: 0 12px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      color: var(--text);
+      background: transparent;
+      font-weight: 800;
+    }
+
+    .admin-pill.active,
+    .admin-pill:hover {
+      color: #fff;
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .badge {
+      display: inline-grid;
+      place-items: center;
+      min-width: 22px;
+      height: 22px;
+      padding: 0 6px;
+      border-radius: 22px;
+      color: #fff;
+      background: var(--coral);
+      font-size: 0.76rem;
+      font-weight: 900;
+    }
+
+    .section-admin-tools {
+      position: absolute;
+      z-index: 5;
+      top: 16px;
+      left: calc((100vw - min(1180px, calc(100vw - 32px))) / 2);
+      display: flex;
+      gap: 8px;
+      padding: 8px;
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--surface-strong) 90%, transparent);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .empty-public {
+      min-height: calc(100vh - var(--header-h));
+    }
+
+    .empty-admin {
+      min-height: 420px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 48px 16px;
+    }
+
+    .empty-admin .box {
+      max-width: 520px;
+      padding: 28px;
+      border-radius: 8px;
+      background: var(--surface-strong);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .section-palette {
+      padding: 18px 0 8px;
+    }
+
+    .section-palette-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .section-choice {
+      min-height: 96px;
+      display: grid;
+      place-items: center;
+      gap: 8px;
+      padding: 12px 8px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      color: var(--text);
+      background: color-mix(in srgb, var(--surface-strong) 84%, transparent);
+      box-shadow: 0 10px 24px rgba(33, 55, 72, 0.08);
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .section-choice:hover {
+      transform: translateY(-3px);
+      border-color: color-mix(in srgb, var(--primary) 45%, var(--line));
+      background: color-mix(in srgb, var(--primary) 7%, var(--surface-strong));
+    }
+
+    .section-choice i {
+      color: var(--primary);
+      width: 28px;
+      height: 28px;
+    }
+
+    .section-choice span {
+      font-size: 0.88rem;
+      font-weight: 850;
+      text-align: center;
+      line-height: 1.35;
+    }
+
+    .editor-shell {
+      padding: 34px 0 70px;
+    }
+
+    .editor-grid {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .panel {
+      border-radius: 8px;
+      padding: 20px;
+      background: color-mix(in srgb, var(--surface-strong) 88%, transparent);
+      border: 1px solid var(--line);
+      box-shadow: 0 14px 36px rgba(33, 55, 72, 0.08);
+    }
+
+    .panel h2,
+    .panel h3 {
+      margin: 0 0 16px;
+      color: var(--primary);
+      line-height: 1.3;
+    }
+
+    .form-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .field label {
+      color: var(--text);
+      font-weight: 800;
+      font-size: 0.88rem;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      min-height: 42px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      color: var(--text);
+      background: color-mix(in srgb, var(--surface-strong) 92%, transparent);
+      padding: 10px 12px;
+      outline: none;
+    }
+
+    .field textarea {
+      min-height: 110px;
+      resize: vertical;
+      line-height: 1.7;
+    }
+
+    .field input[type="color"] {
+      height: 42px;
+      padding: 3px;
+    }
+
+    .field input[type="range"] {
+      padding: 0;
+      min-height: auto;
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: color-mix(in srgb, var(--primary) 55%, var(--line));
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 12%, transparent);
+    }
+
+    .two-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .actions-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .page-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+      max-height: 430px;
+      overflow: auto;
+      padding-left: 4px;
+    }
+
+    .page-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      align-items: center;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--surface-strong) 78%, transparent);
+    }
+
+    .page-row small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+    }
+
+    .page-row-actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .builder-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .builder-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .builder-card {
+      padding: 14px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .section-type-badge {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius);
+      color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 10%, transparent);
+      border: 1px solid var(--line);
+    }
+
+    .builder-card h3 {
+      margin: 0 0 4px;
+      font-size: 1rem;
+      color: var(--text);
+    }
+
+    .builder-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+
+    .messages-page {
+      padding: 34px 0 70px;
+    }
+
+    .messages-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .message-card {
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: start;
+      border-right: 4px solid transparent;
+    }
+
+    .message-card.unread {
+      border-right-color: var(--coral);
+      background: color-mix(in srgb, var(--coral) 5%, var(--surface-strong));
+    }
+
+    .message-card h3 {
+      margin: 0 0 8px;
+      color: var(--primary);
+    }
+
+    .message-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-bottom: 10px;
+    }
+
+    .message-card p {
+      margin: 0;
+      color: var(--text);
+      line-height: 1.8;
+      white-space: pre-wrap;
+    }
+
+    .contact-page {
+      padding: 50px 0 80px;
+    }
+
+    .contact-card {
+      display: grid;
+      grid-template-columns: minmax(320px, 0.84fr) minmax(320px, 1.16fr);
+      gap: 0;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      background: var(--surface-strong);
+    }
+
+    .contact-visual {
+      position: relative;
+      min-height: 540px;
+      padding: 28px;
+      overflow: hidden;
+      color: #fff;
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--primary) 92%, #000), color-mix(in srgb, var(--teal) 60%, var(--primary))),
+        var(--primary);
+    }
+
+    .contact-visual::after {
+      content: "";
+      position: absolute;
+      inset: 34px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 8px;
+    }
+
+    .contact-visual h1 {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.15;
+    }
+
+    .contact-visual p {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      max-width: 480px;
+      line-height: 1.9;
+      color: rgba(255, 255, 255, 0.84);
+    }
+
+    .contact-visual .mini-card {
+      position: absolute;
+      z-index: 1;
+      right: 28px;
+      bottom: 28px;
+      left: 28px;
+      padding: 18px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.13);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+    }
+
+    .contact-form {
+      padding: 28px;
+      align-self: center;
+    }
+
+    .toast {
+      position: fixed;
+      z-index: 200;
+      right: 22px;
+      bottom: 22px;
+      display: none;
+      max-width: min(420px, calc(100% - 44px));
+      padding: 14px 16px;
+      border-radius: var(--radius);
+      color: #fff;
+      background: #203442;
+      box-shadow: var(--shadow);
+    }
+
+    .toast.show {
+      display: block;
+      animation: toast-in 0.2s ease;
+    }
+
+    @keyframes toast-in {
+      from { transform: translateY(12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .floating-contact {
+      position: fixed;
+      z-index: 90;
+      right: 24px;
+      bottom: 24px;
+      width: 74px;
+      height: 74px;
+    }
+
+    .contact-main {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--primary);
+      box-shadow: 0 16px 34px rgba(35, 111, 152, 0.3);
+      transition: transform 0.22s ease, background 0.22s ease;
+    }
+
+    .floating-contact.open .contact-main {
+      transform: rotate(45deg);
+      background: var(--coral);
+    }
+
+    .contact-orbit {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .orbit-btn {
+      position: absolute;
+      right: 8px;
+      bottom: 8px;
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      border: 0;
+      box-shadow: var(--shadow);
+      transform: translate(0, 0) scale(0.66);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.22s ease, opacity 0.22s ease;
+    }
+
+    .floating-contact.open .orbit-btn {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .floating-contact.open .orbit-btn.whatsapp {
+      transform: translate(-6px, -116px) scale(1);
+    }
+
+    .floating-contact.open .orbit-btn.facebook {
+      transform: translate(-82px, -86px) scale(1);
+    }
+
+    .floating-contact.open .orbit-btn.message {
+      transform: translate(-118px, -10px) scale(1);
+    }
+
+    .orbit-btn.whatsapp { background: #54c247; }
+    .orbit-btn.facebook { background: #2f63c7; }
+    .orbit-btn.message { background: var(--accent); }
+
+    .modal-backdrop {
+      position: fixed;
+      z-index: 150;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(11, 20, 28, 0.56);
+      backdrop-filter: blur(8px);
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal {
+      width: min(720px, 100%);
+      max-height: min(90vh, 920px);
+      overflow: auto;
+      border-radius: 8px;
+      background: var(--surface-strong);
+      border: 1px solid var(--line);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+    }
+
+    .modal.wide {
+      width: min(980px, 100%);
+    }
+
+    .modal-head {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--line);
+      background: var(--surface-strong);
+    }
+
+    .modal-head h2 {
+      margin: 0;
+      color: var(--primary);
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    .item-editor-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .item-editor {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--surface-strong) 84%, transparent);
+    }
+
+    .item-editor-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .image-preview-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: color-mix(in srgb, var(--primary) 7%, var(--surface-strong));
+      min-height: 180px;
+    }
+
+    .image-preview-card.compact {
+      min-height: 130px;
+    }
+
+    .image-preview-card img {
+      width: 100%;
+      height: 100%;
+      min-height: inherit;
+      object-fit: cover;
+    }
+
+    .lightbox-image {
+      width: 100%;
+      max-height: 62vh;
+      object-fit: contain;
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--primary) 7%, #fff);
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .danger {
+      color: #fff;
+      background: var(--coral);
+      border-color: var(--coral);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 980px) {
+      :root {
+        --header-h: 68px;
+      }
+
+      .header-inner {
+        width: min(100% - 24px, 1180px);
+      }
+
+      .mobile-menu-btn {
+        display: inline-grid;
+      }
+
+      .brand {
+        min-width: 0;
+        flex: 1;
+      }
+
+      .brand-title {
+        max-width: 150px;
+      }
+
+      .main-nav {
+        position: fixed;
+        top: var(--header-h);
+        right: 12px;
+        left: 12px;
+        display: none;
+        max-height: calc(100vh - var(--header-h) - 24px);
+        overflow: auto;
+        padding: 12px;
+        border-radius: 8px;
+        background: var(--surface-strong);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .main-nav.open {
+        display: flex;
+      }
+
+      .nav-link {
+        justify-content: space-between;
+      }
+
+      .subnav {
+        position: static;
+        opacity: 1;
+        pointer-events: auto;
+        transform: none;
+        min-width: 0;
+        box-shadow: none;
+        margin: 6px 0 10px;
+      }
+
+      .subnav::before {
+        display: none;
+      }
+
+      .header-tools {
+        min-width: auto;
+      }
+
+      .search-wrap {
+        width: 44px;
+      }
+
+      .search-wrap:focus-within {
+        position: fixed;
+        z-index: 120;
+        top: 12px;
+        right: 12px;
+        left: 12px;
+        width: auto;
+      }
+
+      .search-input {
+        padding-left: 10px;
+      }
+
+      .tool-btn .btn-text {
+        display: none;
+      }
+
+      .hero-grid,
+      .split-layout,
+      .split-layout.flip,
+      .contact-card,
+      .accordion-list,
+      .editor-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid {
+        padding: 42px 0 74px;
+      }
+
+      .hero-copy {
+        justify-self: stretch;
+      }
+
+      .hero-art {
+        min-height: 330px;
+        order: -1;
+      }
+
+      .reviews-panel,
+      .survey-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .section-palette-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .feature-item:nth-child(2n) {
+        border-left: 0;
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .work-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .contact-visual {
+        min-height: 360px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 24px, 1180px);
+      }
+
+      .brand-tagline,
+      .admin-user,
+      .search-wrap:not(:focus-within) .search-input {
+        display: none;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 12vw, 3.1rem);
+      }
+
+      .hero-art {
+        min-height: 270px;
+      }
+
+      .feature-strip,
+      .card-grid,
+      .work-grid,
+      .section-palette-grid,
+      .two-cols {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-item,
+      .feature-item:nth-child(2n) {
+        border-left: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .feature-item:last-child {
+        border-bottom: 0;
+      }
+
+      .content-section {
+        padding: 46px 0;
+      }
+
+      .section-admin-tools {
+        left: 12px;
+      }
+
+      .builder-card,
+      .message-card {
+        grid-template-columns: 1fr;
+      }
+
+      .floating-contact {
+        right: 16px;
+        bottom: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="app-shell"></div>
+  <div id="modal-root"></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics.js";
+    import {
+      getAuth,
+      browserLocalPersistence,
+      onAuthStateChanged,
+      sendPasswordResetEmail,
+      setPersistence,
+      signInWithEmailAndPassword,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+    import {
+      addDoc,
+      collection,
+      deleteDoc,
+      doc,
+      getFirestore,
+      onSnapshot,
+      orderBy,
+      query,
+      serverTimestamp,
+      setDoc,
+      updateDoc
+    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAmYv_ZOIdNOThnxiIHTQegY7POlFjaFmc",
+      authDomain: "hossam-38719.firebaseapp.com",
+      projectId: "hossam-38719",
+      storageBucket: "hossam-38719.firebasestorage.app",
+      messagingSenderId: "495541959006",
+      appId: "1:495541959006:web:ae1f196882c683dd9bb7cf",
+      measurementId: "G-6CSZNFYCV2"
+    };
+
+    const IMAGE_API_KEY = "48bb17b6e24892d745741a65d54e3520";
+
+    const fbApp = initializeApp(firebaseConfig);
+    try {
+      getAnalytics(fbApp);
+    } catch (error) {
+      console.info("Analytics is skipped in this environment.", error);
+    }
+
+    const auth = getAuth(fbApp);
+    const db = getFirestoreSafe();
+
+    setPersistence(auth, browserLocalPersistence).catch(() => {});
+
+    function getFirestoreSafe() {
+      try {
+        return getFirestore(fbApp);
+      } catch (error) {
+        console.error(error);
+        return null;
+      }
+    }
+
+    const defaultSettings = {
+      title: "حسام للطباعة والدعاية",
+      tagline: "طباعة، دعاية، وهوية بصرية",
+      logoUrl: "",
+      whatsapp: "01020676556",
+      facebook: "https://www.facebook.com/HOSSAMEL3WITY",
+      theme: "light",
+      primary: "#236f98",
+      accent: "#d2a76c",
+      coral: "#d84f4f",
+      teal: "#44b8bd",
+      background: "#eef3f8",
+      textColor: "#193345",
+      fontFamily: "Segoe UI, Tahoma, Arial, sans-serif",
+      textScale: 1
+    };
+
+    const visual = (title, bg1 = "#236f98", bg2 = "#d2a76c", bg3 = "#44b8bd") => {
+      const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="900" height="620" viewBox="0 0 900 620">
+          <defs>
+            <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+              <stop stop-color="${bg1}" offset="0"/>
+              <stop stop-color="${bg3}" offset="0.55"/>
+              <stop stop-color="${bg2}" offset="1"/>
+            </linearGradient>
+            <filter id="s" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#1d3444" flood-opacity=".22"/>
+            </filter>
+          </defs>
+          <rect width="900" height="620" fill="#f7fafc"/>
+          <rect x="0" y="0" width="900" height="620" fill="url(#g)" opacity=".12"/>
+          <circle cx="150" cy="125" r="96" fill="${bg3}" opacity=".18"/>
+          <circle cx="770" cy="480" r="140" fill="${bg2}" opacity=".18"/>
+          <g filter="url(#s)" transform="translate(156 102) rotate(-6 300 210)">
+            <rect x="88" y="96" width="430" height="270" rx="14" fill="#ffffff"/>
+            <path d="M88 96h430v88H88z" fill="${bg1}"/>
+            <path d="M88 288h430v78H88z" fill="${bg2}" opacity=".9"/>
+            <circle cx="170" cy="225" r="54" fill="${bg3}" opacity=".85"/>
+            <rect x="250" y="218" width="220" height="18" rx="9" fill="#d8e8ef"/>
+            <rect x="250" y="252" width="175" height="18" rx="9" fill="#e9eef2"/>
+          </g>
+          <g filter="url(#s)" transform="translate(310 244) rotate(8 220 150)">
+            <rect x="34" y="30" width="380" height="230" rx="14" fill="#ffffff"/>
+            <rect x="58" y="60" width="142" height="100" rx="10" fill="${bg1}" opacity=".92"/>
+            <rect x="220" y="68" width="150" height="16" rx="8" fill="#d6e3ea"/>
+            <rect x="220" y="102" width="118" height="16" rx="8" fill="#e6edf1"/>
+            <rect x="58" y="188" width="310" height="20" rx="10" fill="${bg2}" opacity=".92"/>
+          </g>
+          <text x="450" y="548" text-anchor="middle" font-size="42" font-family="Arial, sans-serif" font-weight="700" fill="${bg1}">${title}</text>
+        </svg>
+      `;
+      return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+    };
+
+    const starterPages = [
+      {
+        id: "home",
+        title: "الرئيسية",
+        slug: "home",
+        order: 0,
+        parentId: "",
+        sections: []
+      },
+      {
+        id: "contact",
+        title: "تواصل معنا",
+        slug: "contact",
+        order: 1,
+        parentId: "",
+        sections: []
+      },
+      {
+        id: "reviews",
+        title: "تقييمات العملاء",
+        slug: "reviews",
+        order: 2,
+        parentId: "",
+        sections: [
+          {
+            id: "reviews-main",
+            type: "reviews",
+            title: "تقييمات العملاء",
+            text: "",
+            items: []
+          }
+        ]
+      }
+    ];
+
+    const oldStarterSectionIds = new Set([
+      "hero-start",
+      "features-start",
+      "services-start",
+      "gallery-start",
+      "printing-hero",
+      "printing-accordion",
+      "identity-text",
+      "portfolio-gallery"
+    ]);
+    const oldStarterOnlyPageIds = new Set(["printing", "identity", "portfolio"]);
+
+    const state = {
+      settings: { ...defaultSettings },
+      pages: structuredClone(starterPages),
+      usingStarter: true,
+      user: null,
+      messages: [],
+      reviews: [],
+      surveys: [],
+      messageFilter: "all",
+      currentRoute: "page/home",
+      contactOpen: false,
+      menuOpen: false,
+      pinnedSubnavId: "",
+      tabDrag: null,
+      suppressNavClickUntil: 0,
+      selectedEditorPageId: "home",
+      modal: null,
+      sectionDraft: null,
+      sectionDraftIndex: null,
+      sectionDraftPageId: null,
+      searchQuery: "",
+      activeAccordion: {},
+      unsub: {
+        settings: null,
+        pages: null,
+        messages: null,
+        reviews: null,
+        surveys: null
+      }
+    };
+
+    const appRoot = document.getElementById("app");
+    const modalRoot = document.getElementById("modal-root");
+    const toastEl = document.getElementById("toast");
+
+    onAuthStateChanged(auth, (user) => {
+      state.user = user;
+      if (user) {
+        listenMessages();
+        listenSurveys();
+      } else if (state.unsub.messages) {
+        state.unsub.messages();
+        state.unsub.messages = null;
+        state.messages = [];
+      }
+      if (!user && state.unsub.surveys) {
+        state.unsub.surveys();
+        state.unsub.surveys = null;
+        state.surveys = [];
+      }
+      renderApp();
+    });
+
+    listenSettings();
+    listenPages();
+    listenReviews();
+    setRouteFromHash();
+    window.addEventListener("hashchange", () => {
+      setRouteFromHash();
+      renderApp();
+    });
+
+    document.addEventListener("click", handleClick);
+    document.addEventListener("submit", handleSubmit);
+    document.addEventListener("input", handleInput);
+    document.addEventListener("change", handleChange);
+    document.addEventListener("dragstart", handleTabDragStart);
+    document.addEventListener("dragover", handleTabDragOver);
+    document.addEventListener("dragleave", handleTabDragLeave);
+    document.addEventListener("drop", handleTabDrop);
+    document.addEventListener("dragend", handleTabDragEnd);
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        state.modal = null;
+        state.contactOpen = false;
+        state.menuOpen = false;
+        renderApp();
+      }
+    });
+
+    function listenSettings() {
+      if (!db) return;
+      const ref = doc(db, "siteSettings", "main");
+      state.unsub.settings = onSnapshot(ref, (snap) => {
+        if (snap.exists()) {
+          state.settings = { ...defaultSettings, ...snap.data() };
+        }
+        applySettings();
+        renderApp();
+      }, (error) => {
+        console.warn("Settings listener failed", error);
+        applySettings();
+        renderApp();
+      });
+    }
+
+    function listenPages() {
+      if (!db) {
+        renderApp();
+        return;
+      }
+      const q = query(collection(db, "sitePages"), orderBy("order", "asc"));
+      state.unsub.pages = onSnapshot(q, (snap) => {
+        const pages = snap.docs
+          .map((item) => ({ id: item.id, ...item.data() }))
+          .map(sanitizeStoredPage)
+          .filter(Boolean);
+        if (pages.length) {
+          state.pages = ensureBuiltInPages(pages.map((page) => ({ ...page, sections: Array.isArray(page.sections) ? page.sections : [] })));
+          state.usingStarter = false;
+          if (!state.pages.some((page) => page.id === state.selectedEditorPageId)) {
+            state.selectedEditorPageId = topLevelPages()[0]?.id || state.pages[0]?.id || "";
+          }
+        } else {
+          state.pages = structuredClone(starterPages);
+          state.usingStarter = true;
+        }
+        renderApp();
+      }, (error) => {
+        console.warn("Pages listener failed", error);
+        state.pages = structuredClone(starterPages);
+        state.usingStarter = true;
+        renderApp();
+      });
+    }
+
+    function sanitizeStoredPage(page) {
+      const sections = ensureItems(page.sections).filter((section) => !oldStarterSectionIds.has(section.id));
+      if (oldStarterOnlyPageIds.has(page.id) && sections.length === 0) return null;
+      return { ...page, sections };
+    }
+
+    function ensureBuiltInPages(pages) {
+      const next = [...pages];
+      const reviewTemplate = structuredClone(starterPages.find((page) => page.id === "reviews"));
+      const reviewIndex = next.findIndex((page) => page.id === "reviews");
+      if (reviewIndex === -1) {
+        next.push(reviewTemplate);
+      } else if (!ensureItems(next[reviewIndex].sections).some((section) => section.type === "reviews")) {
+        next[reviewIndex] = {
+          ...reviewTemplate,
+          ...next[reviewIndex],
+          sections: [...ensureItems(next[reviewIndex].sections), ...reviewTemplate.sections]
+        };
+      }
+      return next;
+    }
+
+    function listenMessages() {
+      if (!db || state.unsub.messages) return;
+      const q = query(collection(db, "messages"), orderBy("createdAt", "desc"));
+      state.unsub.messages = onSnapshot(q, (snap) => {
+        state.messages = snap.docs.map((item) => ({ id: item.id, ...item.data() }));
+        renderApp();
+      }, (error) => {
+        console.warn("Messages listener failed", error);
+        showToast("مش قادر أقرأ الرسائل. راجع قواعد Firestore.");
+      });
+    }
+
+    function listenReviews() {
+      if (!db || state.unsub.reviews) return;
+      const q = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
+      state.unsub.reviews = onSnapshot(q, (snap) => {
+        state.reviews = snap.docs.map((item) => ({ id: item.id, ...item.data() }));
+        renderApp();
+      }, (error) => {
+        console.warn("Reviews listener failed", error);
+      });
+    }
+
+    function listenSurveys() {
+      if (!db || state.unsub.surveys) return;
+      const q = query(collection(db, "surveys"), orderBy("createdAt", "desc"));
+      state.unsub.surveys = onSnapshot(q, (snap) => {
+        state.surveys = snap.docs.map((item) => ({ id: item.id, ...item.data() }));
+        renderApp();
+      }, (error) => {
+        console.warn("Surveys listener failed", error);
+      });
+    }
+
+    function setRouteFromHash() {
+      const raw = (location.hash || "#page/home").replace(/^#\/?/, "");
+      state.currentRoute = raw || "page/home";
+      state.contactOpen = false;
+      state.menuOpen = false;
+      if (raw === "contact") state.currentRoute = "contact";
+    }
+
+    function applySettings() {
+      const s = state.settings;
+      document.body.classList.toggle("dark", s.theme === "dark");
+      document.documentElement.style.setProperty("--primary", s.primary || defaultSettings.primary);
+      document.documentElement.style.setProperty("--primary-strong", colorMix(s.primary || defaultSettings.primary, "#000000", 0.22));
+      document.documentElement.style.setProperty("--accent", s.accent || defaultSettings.accent);
+      document.documentElement.style.setProperty("--accent-strong", colorMix(s.accent || defaultSettings.accent, "#000000", 0.18));
+      document.documentElement.style.setProperty("--coral", s.coral || defaultSettings.coral);
+      document.documentElement.style.setProperty("--teal", s.teal || defaultSettings.teal);
+      document.documentElement.style.setProperty("--bg", s.background || defaultSettings.background);
+      document.documentElement.style.setProperty("--text", s.textColor || defaultSettings.textColor);
+      document.documentElement.style.setProperty("--font", s.fontFamily || defaultSettings.fontFamily);
+      document.documentElement.style.setProperty("--text-scale", Number(s.textScale || 1));
+      document.title = s.title || defaultSettings.title;
+    }
+
+    function colorMix(hex, mix, amount) {
+      const a = hexToRgb(hex);
+      const b = hexToRgb(mix);
+      if (!a || !b) return hex;
+      const c = {
+        r: Math.round(a.r + (b.r - a.r) * amount),
+        g: Math.round(a.g + (b.g - a.g) * amount),
+        b: Math.round(a.b + (b.b - a.b) * amount)
+      };
+      return `rgb(${c.r}, ${c.g}, ${c.b})`;
+    }
+
+    function hexToRgb(hex) {
+      const clean = String(hex || "").replace("#", "");
+      if (clean.length !== 6) return null;
+      const value = Number.parseInt(clean, 16);
+      return { r: (value >> 16) & 255, g: (value >> 8) & 255, b: value & 255 };
+    }
+
+    function renderApp() {
+      applySettings();
+      const adminBar = state.user ? renderAdminBar() : "";
+      appRoot.innerHTML = `
+        ${renderHeader()}
+        ${adminBar}
+        ${renderMain()}
+        ${renderFloatingContact()}
+      `;
+      renderModal();
+      refreshIcons();
+      renderSearchResults();
+    }
+
+    function renderHeader() {
+      const s = state.settings;
+      const unread = state.messages.filter((msg) => !msg.read).length;
+      return `
+        <header class="site-header">
+          <div class="header-inner">
+            <a class="brand" href="${pageHash("home")}" aria-label="الرئيسية">
+              <span class="brand-mark">${s.logoUrl ? `<img src="${escapeAttr(s.logoUrl)}" alt="">` : "H"}</span>
+              <span class="brand-copy">
+                <span class="brand-title">${escapeHtml(s.title)}</span>
+                <span class="brand-tagline">${escapeHtml(s.tagline || "")}</span>
+              </span>
+            </a>
+            <nav class="main-nav ${state.menuOpen ? "open" : ""}" aria-label="التنقل الرئيسي">
+              ${renderNavItems()}
+              ${state.user ? `
+                <button class="nav-link nav-quick-add" type="button" data-action="quick-add-page" data-parent-id="" aria-label="إضافة تاب">
+                  <i data-lucide="plus"></i>
+                </button>
+              ` : ""}
+              ${state.user ? `
+                <a class="nav-link ${state.currentRoute === "messages" ? "active" : ""}" href="#messages">
+                  <i data-lucide="mail"></i>
+                  الرسايل
+                  ${unread ? `<span class="badge">${unread}</span>` : ""}
+                </a>
+                <a class="nav-link ${state.currentRoute === "platform" ? "active" : ""}" href="#platform">
+                  <i data-lucide="settings"></i>
+                  ايديت المنصة
+                </a>
+              ` : ""}
+            </nav>
+            <div class="header-tools">
+              <button class="icon-btn mobile-menu-btn" type="button" data-action="toggle-menu" aria-label="فتح القائمة">
+                <i data-lucide="menu"></i>
+              </button>
+              <div class="search-wrap">
+                <i class="search-icon" data-lucide="search"></i>
+                <input class="search-input" id="globalSearch" type="search" placeholder="بحث" value="${escapeAttr(state.searchQuery)}" autocomplete="off" />
+                <div id="searchResults" class="search-results"></div>
+              </div>
+              ${state.user ? `
+                <button class="tool-btn secondary" type="button" data-action="logout">
+                  <i data-lucide="log-out"></i>
+                  <span class="btn-text">خروج</span>
+                </button>
+              ` : `
+                <button class="tool-btn login-icon-btn" type="button" data-action="open-login" title="تسجيل الدخول" aria-label="تسجيل الدخول">
+                  <i data-lucide="lock-keyhole"></i>
+                  <span class="btn-text">تسجيل الدخول</span>
+                </button>
+              `}
+            </div>
+          </div>
+        </header>
+      `;
+    }
+
+    function renderNavItems() {
+      return topLevelPages().map((page) => {
+        const children = childPages(page.id);
+        const active = getCurrentPageId() === page.id || children.some((child) => child.id === getCurrentPageId());
+        const href = page.id === "contact" ? "#contact" : pageHash(page.id);
+        const showSubnav = children.length || state.user;
+        const pinned = state.pinnedSubnavId === page.id;
+        const canDrag = Boolean(state.user);
+        return `
+          <div class="nav-item ${pinned ? "subnav-pinned" : ""}"
+            ${canDrag ? `draggable="true" data-drag-kind="main-tab" data-page-id="${escapeAttr(page.id)}" data-parent-id=""` : ""}>
+            <span class="nav-tab-wrap">
+              <a class="nav-link ${active ? "active" : ""}" href="${href}" ${showSubnav ? `data-action="toggle-subnav" data-page-id="${escapeAttr(page.id)}" aria-expanded="${pinned ? "true" : "false"}"` : ""}>
+                ${page.id === "home" ? `<i data-lucide="home"></i>` : ""}
+                ${escapeHtml(page.title)}
+                ${showSubnav ? `<i data-lucide="chevron-down"></i>` : ""}
+              </a>
+              ${state.user && page.id !== "contact" ? `
+                <button class="nav-edit-mini" type="button" data-action="open-page-editor" data-page-id="${escapeAttr(page.id)}" aria-label="تعديل اسم التاب">
+                  <i data-lucide="edit-3"></i>
+                </button>
+              ` : ""}
+              ${state.user && canDeletePage(page.id) ? `
+                <button class="nav-delete-mini" type="button" data-action="delete-page" data-page-id="${escapeAttr(page.id)}" aria-label="حذف التاب">
+                  <i data-lucide="trash-2"></i>
+                </button>
+              ` : ""}
+            </span>
+            ${showSubnav ? `
+              <div class="subnav">
+                ${children.map((child) => `
+                  <div class="subnav-row" ${state.user ? `draggable="true" data-drag-kind="sub-tab" data-page-id="${escapeAttr(child.id)}" data-parent-id="${escapeAttr(page.id)}"` : ""}>
+                    <a href="${pageHash(child.id)}">${escapeHtml(child.title)}</a>
+                    ${state.user ? `
+                      <button class="subnav-edit-mini" type="button" data-action="open-page-editor" data-page-id="${escapeAttr(child.id)}" aria-label="تعديل اسم التاب الفرعي">
+                        <i data-lucide="edit-3"></i>
+                      </button>
+                    ` : ""}
+                    ${state.user && canDeletePage(child.id) ? `
+                      <button class="subnav-delete-mini" type="button" data-action="delete-page" data-page-id="${escapeAttr(child.id)}" aria-label="حذف التاب الفرعي">
+                        <i data-lucide="trash-2"></i>
+                      </button>
+                    ` : ""}
+                  </div>
+                `).join("")}
+                ${state.user && page.id !== "contact" ? `
+                  <button class="subnav-add" type="button" data-action="quick-add-page" data-parent-id="${escapeAttr(page.id)}" aria-label="إضافة تاب فرعي">
+                    <i data-lucide="plus"></i>
+                  </button>
+                ` : ""}
+              </div>
+            ` : ""}
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderAdminBar() {
+      const unread = state.messages.filter((msg) => !msg.read).length;
+      return `
+        <div class="admin-toolbar">
+          <div class="admin-toolbar-inner">
+            <div class="admin-tabs">
+              <a class="admin-pill ${state.currentRoute === "messages" ? "active" : ""}" href="#messages">
+                <i data-lucide="mail"></i>
+                الرسايل
+                ${unread ? `<span class="badge">${unread}</span>` : ""}
+              </a>
+              <a class="admin-pill ${state.currentRoute === "platform" ? "active" : ""}" href="#platform">
+                <i data-lucide="settings"></i>
+                ايديت المنصة
+              </a>
+              ${getCurrentPageId() ? `
+                <button class="admin-pill" type="button" data-action="scroll-palette">
+                  <i data-lucide="layout-grid"></i>
+                  أشكال
+                </button>
+              ` : ""}
+            </div>
+            <div class="muted admin-user">${escapeHtml(state.user.email || "Admin")}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderMain() {
+      if (state.currentRoute === "messages") return state.user ? renderMessagesPage() : renderProtectedPage();
+      if (state.currentRoute === "platform") return state.user ? renderPlatformPage() : renderProtectedPage();
+      if (state.currentRoute === "contact") return renderContactPage();
+      const id = getCurrentPageId() || "home";
+      return renderContentPage(id);
+    }
+
+    function renderProtectedPage() {
+      return `
+        <main class="empty-admin">
+          <div class="box">
+            <h1>الصفحة دي للأدمن فقط</h1>
+            <p class="muted">سجل دخولك بالإيميل والباسورد من الزر الموجود في آخر الشمال.</p>
+            <button class="tool-btn" type="button" data-action="open-login">
+              <i data-lucide="lock-keyhole"></i>
+              تسجيل الدخول
+            </button>
+          </div>
+        </main>
+      `;
+    }
+
+    function renderContentPage(pageId) {
+      const requestedId = pageId || "home";
+      const page = findPage(requestedId) || (requestedId === "home" ? findPage("home") || state.pages[0] : null);
+      if (!page) return `<main class="empty-public"></main>`;
+      const sections = Array.isArray(page.sections) ? page.sections : [];
+      const visibleSections = state.user ? sections : sections.filter(sectionHasPublicContent);
+      if (!visibleSections.length) {
+        if (!state.user) return `<main class="empty-public"></main>`;
+        return `
+          <main>
+            <div class="container">
+              ${renderSectionPalette(page.id)}
+            </div>
+          </main>
+        `;
+      }
+      return `
+        <main>
+          ${state.user ? `<div class="container">${renderSectionPalette(page.id)}</div>` : ""}
+          ${visibleSections.map((section) => {
+            const originalIndex = sections.indexOf(section);
+            return renderSection(section, page.id, originalIndex);
+          }).join("")}
+        </main>
+      `;
+    }
+
+    function renderSectionPalette(pageId) {
+      return `
+        <section class="section-palette" aria-label="إضافة سيكشن">
+          <div class="section-palette-grid">
+            ${sectionTypes().map((type) => `
+              <button class="section-choice" type="button" data-action="quick-add-section" data-page-id="${escapeAttr(pageId)}" data-type="${escapeAttr(type.value)}">
+                <i data-lucide="${escapeAttr(type.icon)}"></i>
+                <span>${escapeHtml(type.label)}</span>
+              </button>
+            `).join("")}
+          </div>
+        </section>
+      `;
+    }
+
+    function renderSection(section, pageId, index) {
+      const tools = state.user ? renderSectionTools(pageId, index) : "";
+      if (section.type === "hero") return renderHeroSection(section, pageId, index, tools);
+      if (section.type === "features") return renderFeatureSection(section, pageId, index, tools);
+      if (section.type === "cards") return renderCardsSection(section, pageId, index, tools);
+      if (section.type === "gallery") return renderGallerySection(section, pageId, index, tools);
+      if (section.type === "image") return renderImageSection(section, pageId, index, tools);
+      if (section.type === "accordion") return renderAccordionSection(section, pageId, index, tools);
+      if (section.type === "reviews") return renderReviewsSection(section, pageId, index, tools);
+      if (section.type === "survey") return renderSurveySection(section, pageId, index, tools);
+      return renderTextSection(section, pageId, index, tools);
+    }
+
+    function renderSectionTools(pageId, index) {
+      return `
+        <div class="section-admin-tools">
+          <button class="icon-btn" type="button" title="تعديل" data-action="open-section-editor" data-page-id="${escapeAttr(pageId)}" data-index="${index}">
+            <i data-lucide="edit-3"></i>
+          </button>
+          <button class="icon-btn" type="button" title="تحريك لأعلى" data-action="move-section" data-page-id="${escapeAttr(pageId)}" data-index="${index}" data-dir="-1">
+            <i data-lucide="arrow-up"></i>
+          </button>
+          <button class="icon-btn" type="button" title="تحريك لأسفل" data-action="move-section" data-page-id="${escapeAttr(pageId)}" data-index="${index}" data-dir="1">
+            <i data-lucide="arrow-down"></i>
+          </button>
+          <button class="icon-btn danger" type="button" title="حذف" data-action="delete-section" data-page-id="${escapeAttr(pageId)}" data-index="${index}">
+            <i data-lucide="trash-2"></i>
+          </button>
+        </div>
+      `;
+    }
+
+    function renderHeroSection(section, pageId, index, tools) {
+      const actionHref = section.actionPageId ? pageHash(section.actionPageId) : "#contact";
+      return `
+        <section class="hero" data-section="${escapeAttr(section.id || index)}">
+          ${tools}
+          <div class="container hero-grid">
+            <div class="hero-art">
+              ${section.imageUrl ? `
+                <div class="hero-image"><img src="${escapeAttr(section.imageUrl)}" alt="${escapeAttr(section.title || "")}"></div>
+              ` : `
+                <div class="visual-print" aria-hidden="true">
+                  <div class="print-stack">
+                    <span class="print-sheet one"></span>
+                    <span class="print-sheet two"></span>
+                    <span class="print-sheet three"></span>
+                  </div>
+                  <span class="stamp">PRINT</span>
+                </div>
+              `}
+              <div class="hero-chip"><i data-lucide="sparkles"></i>أعمالنا</div>
+            </div>
+            <div class="hero-copy">
+              ${section.eyebrow ? `<span class="eyebrow"><i data-lucide="badge-check"></i>${escapeHtml(section.eyebrow)}</span>` : ""}
+              <h1>${escapeHtml(section.title || "")}</h1>
+              ${section.text ? `<p>${escapeHtml(section.text)}</p>` : ""}
+              ${section.note ? `<div class="hero-note">${escapeHtml(section.note)}</div>` : ""}
+              <div class="hero-actions">
+                <a class="tool-btn" href="${escapeAttr(actionHref)}">
+                  <i data-lucide="gallery-horizontal"></i>
+                  ${escapeHtml(section.actionText || "تصفح الأعمال")}
+                </a>
+                <a class="tool-btn accent" href="#contact">
+                  <i data-lucide="send"></i>
+                  ${escapeHtml(section.secondaryText || "اطلب تواصل")}
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderFeatureSection(section, pageId, index, tools) {
+      const items = visibleSectionItems(section.items);
+      return `
+        <section class="content-section" data-section="${escapeAttr(section.id || index)}">
+          ${tools}
+          <div class="container">
+            <div class="feature-strip">
+              ${items.map((item) => `
+                <div class="feature-item">
+                  <span class="feature-icon">
+                    ${item.imageUrl ? `<img src="${escapeAttr(item.imageUrl)}" alt="">` : `<i data-lucide="check"></i>`}
+                  </span>
+                  <span>
+                    <strong>${escapeHtml(item.title || "")}</strong>
+                    <span>${escapeHtml(item.text || "")}</span>
+                  </span>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderCardsSection(section, pageId, index, tools) {
+      const items = visibleSectionItems(section.items);
+      return `
+        <section class="content-section" data-section="${escapeAttr(section.id || index)}">
+          ${tools}
+          <div class="container">
+            ${renderSectionHeading(section)}
+            <div class="card-grid">
+              ${items.map((item, itemIndex) => `
+                <article class="content-card">
+                  <button class="card-media ${item.shape === "square" ? "square" : ""}" type="button" data-action="open-lightbox" data-page-id="${escapeAttr(pageId)}" data-index="${index}" data-item="${itemIndex}">
+                    <img src="${escapeAttr(item.coverUrl || item.imageUrl || visual(item.title || "عمل"))}" alt="${escapeAttr(item.title || "")}">
+                    ${item.insideUrl ? `<span class="inner-thumb"><img src="${escapeAttr(item.insideUrl)}" alt=""></span>` : ""}
+                  </button>
+                  <div class="card-body">
+                    <h3>${escapeHtml(item.title || "")}</h3>
+                    <p>${escapeHtml(item.text || "")}</p>
+                    <button class="tool-btn secondary" type="button" data-action="open-lightbox" data-page-id="${escapeAttr(pageId)}" data-index="${index}" data-item="${itemIndex}">
+                      <i data-lucide="eye"></i>
+                      اعرف أكتر
+                    </button>
+                  </div>
+                </article>
+              `).join("")}
+              ${state.user ? `
+                <button class="add-card-tile" type="button" data-action="add-card-item" data-page-id="${escapeAttr(pageId)}" data-index="${index}" data-after="${items.length - 1}">
+                  <i data-lucide="plus"></i>
+                  <span>إضافة كارت جنبهم</span>
+                </button>
+              ` : ""}
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderGallerySection(section, pageId, index, tools) {
+      const items = visibleSectionItems(section.items);
+      return `
+        <section class="content-section" data-section="${escapeAttr(section.id || index)}">
+          ${tools}
+          <div class="container">
+            ${renderSectionHeading(section)}
+            <div class="work-grid">
+              ${items.map((item, itemIndex) => `
+                <button class="work-card ${item.shape === "square" ? "square" : ""}" type="button" data-action="open-lightbox" data-page-id="${escapeAttr(pageId)}" data-index="${index}" data-item="${itemIndex}">
+                  <img src="${escapeAttr(item.imageUrl || visual(item.title || "عمل"))}" alt="${escapeAttr(item.title || "")}">
+                  <span class="work-card-caption">${escapeHtml(item.title || "")}</span>
+                </button>
+              `).join("")}
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderImageSection(section, pageId, index, tools) {
+      const hasCopy = Boolean((section.title || "").trim() || (section.text || "").trim() || (section.eyebrow || "").trim());
+      if (!hasCopy) {
+        return `
+          <section class="content-section" data-section="${escapeAttr(section.id || index)}">
+            ${tools}
+            <div class="container">
+              <div class="split-media image-only">
+                <img src="${escapeAttr(section.imageUrl || visual("صورة"))}" alt="">
+              </div>
+            </div>
+          </section>
+        `;
+      }
+      return `
+        <section class="content-section" data-section="${escapeAttr(section.id || index)}">
+          ${tools}
+          <div class="container">
+            <div class="split-layout ${section.layout === "flip" ? "flip" : ""}">
+              <div class="split-media">
+                <img src="${escapeAttr(section.imageUrl || visual(section.title || "خدمة"))}" alt="${escapeAttr(section.title || "")}">
+              </div>
+              <div class="split-copy">
+                ${section.eyebrow ? `<span class="eyebrow"><i data-lucide="layers"></i> ${escapeHtml(section.eyebrow)}</span>` : ""}
+                <h2>${escapeHtml(section.title || "")}</h2>
+                <p>${escapeHtml(section.text || "")}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderAccordionSection(section, pageId, index, tools) {
+      const items = visibleSectionItems(section.items);
+      const activeIndex = Math.min(state.activeAccordion[section.id || `${pageId}-${index}`] || 0, Math.max(items.length - 1, 0));
+      const active = items[activeIndex] || {};
+      return `
+        <section class="content-section" data-section="${escapeAttr(section.id || index)}">
+          ${tools}
+          <div class="container">
+            ${renderSectionHeading(section)}
+            <div class="accordion-list">
+              <div class="accordion-tabs">
+                ${items.map((item, itemIndex) => `
+                  <button class="accordion-tab ${itemIndex === activeIndex ? "active" : ""}" type="button" data-action="accordion" data-key="${escapeAttr(section.id || `${pageId}-${index}`)}" data-index="${itemIndex}">
+                    <span>${escapeHtml(item.title || "")}</span>
+                    <i data-lucide="chevron-left"></i>
+                  </button>
+                `).join("")}
+              </div>
+              <div class="accordion-preview">
+                <img src="${escapeAttr(active.imageUrl || visual(active.title || "تفاصيل"))}" alt="${escapeAttr(active.title || "")}">
+                <h3>${escapeHtml(active.title || "")}</h3>
+                <p>${escapeHtml(active.text || "")}</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderTextSection(section, pageId, index, tools) {
+      return `
+        <section class="content-section" data-section="${escapeAttr(section.id || index)}">
+          ${tools}
+          <div class="container">
+            <div class="text-panel">
+              ${section.eyebrow ? `<span class="eyebrow">${escapeHtml(section.eyebrow)}</span>` : ""}
+              <h2>${escapeHtml(section.title || "")}</h2>
+              <div class="text-body">${escapeHtml(section.text || "").replaceAll("\n", "<br>")}</div>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderReviewsSection(section, pageId, index, tools) {
+      const reviews = state.reviews.slice(0, 8);
+      return `
+        <section class="content-section" data-section="${escapeAttr(section.id || index)}">
+          ${tools}
+          <div class="container">
+            ${renderSectionHeading(section)}
+            <div class="reviews-panel">
+              <form class="review-form form-grid" data-form="review">
+                <div class="field">
+                  <label>اسم العميل</label>
+                  <input name="name" required placeholder="اكتب اسمك">
+                </div>
+                <div class="field">
+                  <label>التقييم</label>
+                  <div class="rating-row">
+                    ${[5, 4, 3, 2, 1].map((value) => `
+                      <label class="rating-option">
+                        <input type="radio" name="rating" value="${value}" ${value === 5 ? "checked" : ""}>
+                        <span><small>${value}</small><i>★</i></span>
+                      </label>
+                    `).join("")}
+                  </div>
+                </div>
+                <div class="field">
+                  <label>الكومنت</label>
+                  <textarea name="comment" required placeholder="اكتب رأيك في الشغل"></textarea>
+                </div>
+                <button class="tool-btn" type="submit">
+                  <i data-lucide="star"></i>
+                  إرسال التقييم
+                </button>
+              </form>
+              <div class="reviews-list">
+                ${reviews.length ? reviews.map(renderReviewCard).join("") : `
+                  <div class="review-card">
+                    <strong>لسه مفيش تقييمات</strong>
+                    <p class="muted" style="margin:0">أول تقييم من عميل هيظهر هنا مباشرة.</p>
+                  </div>
+                `}
+              </div>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderReviewCard(review) {
+      const rating = Math.max(1, Math.min(5, Number(review.rating || 5)));
+      return `
+        <article class="review-card">
+          <div>
+            <strong>${escapeHtml(review.name || "عميل")}</strong>
+            ${renderStars(rating)}
+            <p class="muted" style="margin:8px 0 0">${escapeHtml(review.comment || "")}</p>
+          </div>
+          ${state.user ? `
+            <button class="icon-btn review-delete-btn" type="button" data-action="delete-review" data-id="${escapeAttr(review.id)}" aria-label="حذف التقييم">
+              <i data-lucide="trash-2"></i>
+            </button>
+          ` : ""}
+        </article>
+      `;
+    }
+
+    function renderStars(rating) {
+      const safeRating = Math.max(1, Math.min(5, Number(rating || 5)));
+      return `
+        <span class="stars-display" aria-label="${safeRating} من 5">
+          ${[1, 2, 3, 4, 5].map((value) => `<i class="${value <= safeRating ? "lit" : ""}">★</i>`).join("")}
+        </span>
+      `;
+    }
+
+    function renderSurveySection(section, pageId, index, tools) {
+      const question = section.title || "سيرفاي";
+      const responses = state.surveys.filter((survey) => !survey.question || survey.question === question);
+      return `
+        <section class="content-section" data-section="${escapeAttr(section.id || index)}">
+          ${tools}
+          <div class="container">
+            ${renderSectionHeading(section)}
+            <div class="survey-panel">
+              <div class="text-panel">
+                <h2>${escapeHtml(question)}</h2>
+                <div class="text-body">${escapeHtml(section.text || "اسأل العميل سؤال سريع واحفظ الرد في Firebase.").replaceAll("\n", "<br>")}</div>
+                ${state.user ? `
+                  <div class="survey-responses">
+                    ${responses.length ? responses.map(renderSurveyResponse).join("") : `
+                      <div class="review-card">
+                        <strong>مفيش ردود سيرفاي</strong>
+                        <p class="muted" style="margin:0">أول رد هيظهر هنا للأدمن.</p>
+                      </div>
+                    `}
+                  </div>
+                ` : ""}
+              </div>
+              <form class="survey-form form-grid" data-form="survey">
+                <input type="hidden" name="question" value="${escapeAttr(question)}">
+                <div class="field">
+                  <label>اسم العميل</label>
+                  <input name="name" placeholder="اختياري">
+                </div>
+                <div class="field">
+                  <label>التقييم</label>
+                  <div class="rating-row">
+                    ${[5, 4, 3, 2, 1].map((value) => `
+                      <label class="rating-option">
+                        <input type="radio" name="rating" value="${value}" ${value === 5 ? "checked" : ""}>
+                        <span><small>${value}</small><i>★</i></span>
+                      </label>
+                    `).join("")}
+                  </div>
+                </div>
+                <div class="field">
+                  <label>ملاحظات</label>
+                  <textarea name="comment" placeholder="اكتب أي ملاحظة"></textarea>
+                </div>
+                <button class="tool-btn" type="submit">
+                  <i data-lucide="send"></i>
+                  إرسال
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderSurveyResponse(survey) {
+      const rating = Math.max(1, Math.min(5, Number(survey.rating || survey.answer || 5)));
+      return `
+        <article class="survey-response">
+          <div>
+            <strong>${escapeHtml(survey.name || "عميل")}</strong>
+            ${renderStars(rating)}
+            ${survey.comment ? `<p class="muted" style="margin:6px 0 0">${escapeHtml(survey.comment)}</p>` : ""}
+          </div>
+          <button class="icon-btn danger" type="button" data-action="delete-survey" data-id="${escapeAttr(survey.id)}" aria-label="حذف رد السيرفاي">
+            <i data-lucide="trash-2"></i>
+          </button>
+        </article>
+      `;
+    }
+
+    function renderSectionHeading(section) {
+      const title = escapeHtml(section.title || "");
+      const text = escapeHtml(section.text || "");
+      if (!title && !text) return "";
+      return `
+        <div class="section-heading">
+          ${title ? `<h2>${highlightTitle(title)}</h2><div class="decor"></div>` : ""}
+          ${text ? `<p>${text}</p>` : ""}
+        </div>
+      `;
+    }
+
+    function highlightTitle(title) {
+      const parts = title.split(" ");
+      if (parts.length < 3) return escapeHtml(title);
+      const middle = Math.floor(parts.length / 2);
+      parts[middle] = `<span class="accent-word">${escapeHtml(parts[middle])}</span>`;
+      return parts.map((part, index) => index === middle ? part : escapeHtml(part)).join(" ");
+    }
+
+    function renderMessagesPage() {
+      const all = state.messages;
+      const unread = all.filter((msg) => !msg.read);
+      const read = all.filter((msg) => msg.read);
+      const list = state.messageFilter === "unread" ? unread : state.messageFilter === "read" ? read : all;
+      return `
+        <main class="messages-page">
+          <div class="container">
+            <div class="builder-head">
+              <div>
+                <h1 style="margin:0;color:var(--primary)">الرسايل</h1>
+                <p class="muted" style="margin:6px 0 0">الرسائل بتتحدث لحظيًا من Firestore.</p>
+              </div>
+              <div class="admin-tabs">
+                <button class="admin-pill ${state.messageFilter === "all" ? "active" : ""}" type="button" data-action="message-filter" data-filter="all">الكل ${all.length}</button>
+                <button class="admin-pill ${state.messageFilter === "unread" ? "active" : ""}" type="button" data-action="message-filter" data-filter="unread">غير مقروء ${unread.length}</button>
+                <button class="admin-pill ${state.messageFilter === "read" ? "active" : ""}" type="button" data-action="message-filter" data-filter="read">مقروء ${read.length}</button>
+              </div>
+            </div>
+            <div class="messages-grid">
+              ${list.length ? list.map(renderMessageCard).join("") : `
+                <div class="panel" style="text-align:center">
+                  <h2>مفيش رسائل هنا</h2>
+                  <p class="muted">أول ما عميل يبعت طلب، هيظهر في المكان ده.</p>
+                </div>
+              `}
+            </div>
+          </div>
+        </main>
+      `;
+    }
+
+    function renderMessageCard(message) {
+      const date = message.createdAt?.toDate ? message.createdAt.toDate().toLocaleString("ar-EG") : "لسه دلوقتي";
+      return `
+        <article class="message-card ${message.read ? "" : "unread"}">
+          <div>
+            <h3>${escapeHtml(message.name || "عميل بدون اسم")}</h3>
+            <div class="message-meta">
+              <span><i data-lucide="phone"></i> ${escapeHtml(message.contact || "بدون وسيلة تواصل")}</span>
+              <span><i data-lucide="clock"></i> ${escapeHtml(date)}</span>
+              <span>${message.read ? "مقروءة" : "غير مقروءة"}</span>
+            </div>
+            <p>${escapeHtml(message.body || message.message || "")}</p>
+          </div>
+          <div class="actions-row" style="margin:0">
+            ${message.read ? "" : `
+              <button class="tool-btn secondary" type="button" data-action="mark-read" data-id="${escapeAttr(message.id)}">
+                <i data-lucide="check"></i>
+                مقروء
+              </button>
+            `}
+            <button class="tool-btn danger" type="button" data-action="delete-message" data-id="${escapeAttr(message.id)}">
+              <i data-lucide="trash-2"></i>
+              حذف
+            </button>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderPlatformPage() {
+      return `
+        <main class="editor-shell">
+          <div class="container">
+            <section class="panel platform-settings-panel">
+              <h2>إعدادات المنصة</h2>
+              <form class="form-grid" data-form="settings">
+                <div class="field">
+                  <label for="siteTitle">عنوان الموقع</label>
+                  <input id="siteTitle" name="title" value="${escapeAttr(state.settings.title)}" />
+                </div>
+                <div class="field">
+                  <label for="siteTagline">وصف صغير</label>
+                  <input id="siteTagline" name="tagline" value="${escapeAttr(state.settings.tagline || "")}" />
+                </div>
+                <div class="field">
+                  <label for="logoUrl">اللوجو</label>
+                  <input id="logoUrl" name="logoUrl" value="${escapeAttr(state.settings.logoUrl || "")}" placeholder="لينك اللوجو أو ارفعه" />
+                  <input type="file" accept="image/*" data-action="upload-setting-image" data-target="logoUrl" />
+                </div>
+                <div class="two-cols">
+                  <div class="field">
+                    <label for="whatsapp">رقم واتساب</label>
+                    <input id="whatsapp" name="whatsapp" value="${escapeAttr(state.settings.whatsapp || "")}" />
+                  </div>
+                  <div class="field">
+                    <label for="facebook">لينك فيسبوك</label>
+                    <input id="facebook" name="facebook" value="${escapeAttr(state.settings.facebook || "")}" />
+                  </div>
+                </div>
+                <div class="two-cols">
+                  <div class="field">
+                    <label for="theme">المظهر</label>
+                    <select id="theme" name="theme">
+                      <option value="light" ${state.settings.theme !== "dark" ? "selected" : ""}>Light</option>
+                      <option value="dark" ${state.settings.theme === "dark" ? "selected" : ""}>Dark</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="fontFamily">الفونت</label>
+                    <select id="fontFamily" name="fontFamily">
+                      ${fontOptions().map((font) => `<option value="${escapeAttr(font.value)}" ${state.settings.fontFamily === font.value ? "selected" : ""}>${escapeHtml(font.label)}</option>`).join("")}
+                    </select>
+                  </div>
+                </div>
+                <div class="two-cols">
+                  <div class="field"><label>الأزرق الأساسي</label><input type="color" name="primary" value="${escapeAttr(state.settings.primary)}"></div>
+                  <div class="field"><label>الذهبي</label><input type="color" name="accent" value="${escapeAttr(state.settings.accent)}"></div>
+                  <div class="field"><label>الخلفية</label><input type="color" name="background" value="${escapeAttr(state.settings.background)}"></div>
+                  <div class="field"><label>لون الكتابة</label><input type="color" name="textColor" value="${escapeAttr(state.settings.textColor)}"></div>
+                </div>
+                <div class="field">
+                  <label for="textScale">حجم الكتابة</label>
+                  <input id="textScale" type="range" min="0.9" max="1.2" step="0.02" name="textScale" value="${escapeAttr(state.settings.textScale || 1)}">
+                </div>
+                <button class="tool-btn" type="submit">
+                  <i data-lucide="save"></i>
+                  حفظ الإعدادات
+                </button>
+              </form>
+            </section>
+          </div>
+        </main>
+      `;
+    }
+
+    function renderPageRow(page) {
+      const parent = page.parentId ? findPage(page.parentId) : null;
+      return `
+        <div class="page-row">
+          <button class="nav-link" style="justify-content:flex-start;text-align:start" type="button" data-action="select-editor-page" data-page-id="${escapeAttr(page.id)}">
+            <span>
+              ${escapeHtml(page.title)}
+              <small>${parent ? `تاب فرعي من ${escapeHtml(parent.title)}` : "تاب رئيسي"} · ترتيب ${Number(page.order || 0)}</small>
+            </span>
+          </button>
+          <div class="page-row-actions">
+            <button class="icon-btn" type="button" title="تعديل" data-action="open-page-editor" data-page-id="${escapeAttr(page.id)}">
+              <i data-lucide="edit-3"></i>
+            </button>
+            <button class="icon-btn danger" type="button" title="حذف" data-action="delete-page" data-page-id="${escapeAttr(page.id)}">
+              <i data-lucide="trash-2"></i>
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderBuilderSectionCard(pageId, section, index) {
+      const type = sectionTypeMeta(section.type);
+      return `
+        <article class="builder-card">
+          <span class="section-type-badge"><i data-lucide="${type.icon}"></i></span>
+          <div>
+            <h3>${escapeHtml(section.title || type.label)}</h3>
+            <p>${escapeHtml(type.label)} · ${escapeHtml((section.text || "").slice(0, 100))}</p>
+          </div>
+          <div class="page-row-actions">
+            <button class="icon-btn" type="button" data-action="open-section-editor" data-page-id="${escapeAttr(pageId)}" data-index="${index}" title="تعديل">
+              <i data-lucide="edit-3"></i>
+            </button>
+            <button class="icon-btn" type="button" data-action="move-section" data-page-id="${escapeAttr(pageId)}" data-index="${index}" data-dir="-1" title="أعلى">
+              <i data-lucide="arrow-up"></i>
+            </button>
+            <button class="icon-btn" type="button" data-action="move-section" data-page-id="${escapeAttr(pageId)}" data-index="${index}" data-dir="1" title="أسفل">
+              <i data-lucide="arrow-down"></i>
+            </button>
+            <button class="icon-btn danger" type="button" data-action="delete-section" data-page-id="${escapeAttr(pageId)}" data-index="${index}" title="حذف">
+              <i data-lucide="trash-2"></i>
+            </button>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderContactPage() {
+      return `
+        <main class="contact-page">
+          <div class="container">
+            <div class="section-heading">
+              <h2>تواصل معنا</h2>
+              <div class="decor"></div>
+              <p>اكتب وسيلة تواصل واحدة على الأقل ووصف الطلب أو المشكلة، والرسالة هتوصل للأدمن.</p>
+            </div>
+            <div class="contact-card">
+              <div class="contact-visual">
+                <h1>جاهزين نسمع طلبك</h1>
+                <p>ممكن تكتب رقمك، الإيميل، رابط فيسبوك، أو أي وسيلة تواصل مناسبة لك. الأسعار مش معروضة على الموقع، والتواصل بيتم حسب الطلب.</p>
+                <div class="mini-card">
+                  <strong>واتساب:</strong>
+                  <a href="${escapeAttr(whatsappUrl())}" target="_blank" rel="noopener">${escapeHtml(state.settings.whatsapp || "")}</a>
+                  <br>
+                  <strong>فيسبوك:</strong>
+                  <a href="${escapeAttr(state.settings.facebook || "")}" target="_blank" rel="noopener">صفحتنا على فيسبوك</a>
+                </div>
+              </div>
+              <form class="contact-form form-grid" data-form="contact-message">
+                <div class="field">
+                  <label for="contactName">الاسم</label>
+                  <input id="contactName" name="name" placeholder="اسمك" required>
+                </div>
+                <div class="field">
+                  <label for="contactWay">وسيلة التواصل</label>
+                  <input id="contactWay" name="contact" placeholder="رقم موبايل / إيميل / لينك فيسبوك" required>
+                </div>
+                <div class="field">
+                  <label for="contactBody">وصف الطلب أو المشكلة</label>
+                  <textarea id="contactBody" name="body" placeholder="اكتب التفاصيل هنا" required></textarea>
+                </div>
+                <button class="tool-btn" type="submit">
+                  <i data-lucide="send"></i>
+                  إرسال الرسالة
+                </button>
+              </form>
+            </div>
+          </div>
+        </main>
+      `;
+    }
+
+    function renderFloatingContact() {
+      return `
+        <div class="floating-contact ${state.contactOpen ? "open" : ""}">
+          <div class="contact-orbit" aria-hidden="${state.contactOpen ? "false" : "true"}">
+            <a class="orbit-btn whatsapp" href="${escapeAttr(whatsappUrl())}" target="_blank" rel="noopener" aria-label="واتساب">
+              <i data-lucide="phone"></i>
+            </a>
+            <a class="orbit-btn facebook" href="${escapeAttr(state.settings.facebook || defaultSettings.facebook)}" target="_blank" rel="noopener" aria-label="فيسبوك">
+              <i data-lucide="facebook"></i>
+            </a>
+            <a class="orbit-btn message" href="#contact" aria-label="رسالة">
+              <i data-lucide="mail"></i>
+            </a>
+          </div>
+          <button class="contact-main" type="button" data-action="toggle-contact" aria-label="التواصل">
+            <i data-lucide="${state.contactOpen ? "x" : "message-circle"}"></i>
+          </button>
+        </div>
+      `;
+    }
+
+    function renderModal() {
+      if (!state.modal) {
+        modalRoot.innerHTML = `<div class="modal-backdrop"></div>`;
+        return;
+      }
+      if (state.modal.type === "login" && modalRoot.querySelector("[data-login-modal]")) {
+        refreshIcons();
+        return;
+      }
+      const content = state.modal.type === "login" ? renderLoginModal()
+        : state.modal.type === "section" ? renderSectionModal()
+        : state.modal.type === "page" ? renderPageModal()
+        : state.modal.type === "lightbox" ? renderLightboxModal()
+        : "";
+      modalRoot.innerHTML = `
+        <div class="modal-backdrop open" data-action="close-modal">
+          ${content}
+        </div>
+      `;
+      refreshIcons();
+    }
+
+    function renderLoginModal() {
+      return `
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="loginTitle" data-modal-box data-login-modal>
+          <div class="modal-head">
+            <h2 id="loginTitle">تسجيل دخول الأدمن</h2>
+            <button class="icon-btn" type="button" data-action="close-modal" aria-label="إغلاق"><i data-lucide="x"></i></button>
+          </div>
+          <form class="modal-body form-grid" data-form="login">
+            <div class="field">
+              <label for="loginEmail">الإيميل</label>
+              <input id="loginEmail" name="email" type="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="loginPassword">الباسورد</label>
+              <input id="loginPassword" name="password" type="password" autocomplete="current-password" required>
+            </div>
+            <div class="actions-row">
+              <button class="tool-btn" type="submit">
+                <i data-lucide="lock-keyhole"></i>
+                دخول
+              </button>
+              <button class="tool-btn ghost" type="button" data-action="forgot-password">
+                <i data-lucide="mail"></i>
+                نسيت الباسورد
+              </button>
+            </div>
+          </form>
+        </div>
+      `;
+    }
+
+    function renderSectionModal() {
+      const section = state.sectionDraft || createBlankSection();
+      const meta = sectionTypeMeta(section.type);
+      return `
+        <div class="modal wide" role="dialog" aria-modal="true" aria-labelledby="sectionTitle" data-modal-box>
+          <div class="modal-head">
+            <h2 id="sectionTitle">${state.sectionDraftIndex === null ? "إضافة سيكشن" : "تعديل سيكشن"}</h2>
+            <button class="icon-btn" type="button" data-action="close-modal" aria-label="إغلاق"><i data-lucide="x"></i></button>
+          </div>
+          <form class="modal-body form-grid" data-form="section">
+            <div class="two-cols">
+              <div class="field">
+                <label for="sectionType">نوع السيكشن</label>
+                <select id="sectionType" name="type" data-section-field="type">
+                  ${sectionTypes().map((type) => `<option value="${type.value}" ${section.type === type.value ? "selected" : ""}>${type.label}</option>`).join("")}
+                </select>
+              </div>
+              <div class="field">
+                <label for="sectionLayout">الشكل</label>
+                <select id="sectionLayout" name="layout" data-section-field="layout">
+                  <option value="normal" ${section.layout !== "flip" ? "selected" : ""}>عادي</option>
+                  <option value="flip" ${section.layout === "flip" ? "selected" : ""}>عكس الاتجاه</option>
+                </select>
+              </div>
+            </div>
+            ${renderSectionEditorFields(section, meta)}
+
+            <div class="actions-row">
+              <button class="tool-btn" type="submit">
+                <i data-lucide="save"></i>
+                حفظ السيكشن
+              </button>
+              <button class="tool-btn ghost" type="button" data-action="close-modal">إلغاء</button>
+            </div>
+          </form>
+        </div>
+      `;
+    }
+
+    function renderSectionEditorFields(section, meta) {
+      if (section.type === "text") {
+        return `
+          <div class="field">
+            <label for="sectionTitleInput">العنوان</label>
+            <input id="sectionTitleInput" value="${escapeAttr(section.title || "")}" data-section-field="title">
+          </div>
+          <div class="field">
+            <label for="sectionText">النص</label>
+            <textarea id="sectionText" data-section-field="text">${escapeHtml(section.text || "")}</textarea>
+          </div>
+        `;
+      }
+
+      if (section.type === "image") {
+        return `
+          <div class="two-cols">
+            <div class="image-preview-card">
+              <img id="sectionImagePreview" src="${escapeAttr(section.imageUrl || visual(section.title || "صورة"))}" alt="">
+            </div>
+            <div class="form-grid">
+              <div class="field">
+                <label for="sectionImage">الصورة</label>
+                <input id="sectionImage" value="${escapeAttr(section.imageUrl || "")}" data-section-field="imageUrl" placeholder="لينك الصورة">
+                <input type="file" accept="image/*" data-action="upload-section-image" data-target="imageUrl">
+              </div>
+              <div class="field">
+                <label for="sectionTitleInput">عنوان اختياري</label>
+                <input id="sectionTitleInput" value="${escapeAttr(section.title || "")}" data-section-field="title">
+              </div>
+              <div class="field">
+                <label for="sectionText">وصف اختياري</label>
+                <textarea id="sectionText" data-section-field="text">${escapeHtml(section.text || "")}</textarea>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      if (sectionUsesItems(section.type)) {
+        return `
+          <div class="two-cols">
+            <div class="field">
+              <label for="sectionTitleInput">عنوان السيكشن</label>
+              <input id="sectionTitleInput" value="${escapeAttr(section.title || "")}" data-section-field="title">
+            </div>
+            <div class="field">
+              <label for="sectionText">وصف السيكشن</label>
+              <input id="sectionText" value="${escapeAttr(section.text || "")}" data-section-field="text">
+            </div>
+          </div>
+          <div>
+            <div class="builder-head">
+              <div>
+                <h3 style="margin:0">عناصر ${escapeHtml(meta.label)}</h3>
+              </div>
+              <button class="tool-btn secondary" type="button" data-action="add-draft-item">
+                <i data-lucide="plus"></i>
+                عنصر
+              </button>
+            </div>
+            <div class="item-editor-list">
+              ${ensureItems(section.items).map((item, index) => renderItemEditor(item, index, section.type)).join("")}
+            </div>
+          </div>
+        `;
+      }
+
+      if (section.type === "reviews" || section.type === "survey") {
+        return `
+          <div class="field">
+            <label for="sectionTitleInput">العنوان</label>
+            <input id="sectionTitleInput" value="${escapeAttr(section.title || "")}" data-section-field="title">
+          </div>
+          <div class="field">
+            <label for="sectionText">النص</label>
+            <textarea id="sectionText" data-section-field="text">${escapeHtml(section.text || "")}</textarea>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="two-cols">
+          <div class="field">
+            <label for="sectionTitleInput">العنوان</label>
+            <input id="sectionTitleInput" value="${escapeAttr(section.title || "")}" data-section-field="title">
+          </div>
+          <div class="field">
+            <label for="sectionEyebrow">عنوان صغير</label>
+            <input id="sectionEyebrow" value="${escapeAttr(section.eyebrow || "")}" data-section-field="eyebrow">
+          </div>
+        </div>
+        <div class="field">
+          <label for="sectionText">الوصف</label>
+          <textarea id="sectionText" data-section-field="text">${escapeHtml(section.text || "")}</textarea>
+        </div>
+        <div class="two-cols">
+          <div class="image-preview-card">
+            <img id="sectionImagePreview" src="${escapeAttr(section.imageUrl || visual(section.title || "صورة"))}" alt="">
+          </div>
+          <div class="field">
+            <label for="sectionImage">صورة رئيسية</label>
+            <input id="sectionImage" value="${escapeAttr(section.imageUrl || "")}" data-section-field="imageUrl" placeholder="لينك الصورة">
+            <input type="file" accept="image/*" data-action="upload-section-image" data-target="imageUrl">
+          </div>
+        </div>
+        ${section.type === "hero" ? `
+          <div class="two-cols">
+            <div class="field">
+              <label for="sectionActionText">نص الزر الأساسي</label>
+              <input id="sectionActionText" value="${escapeAttr(section.actionText || "")}" data-section-field="actionText">
+            </div>
+            <div class="field">
+              <label for="sectionActionPage">يفتح صفحة</label>
+              <select id="sectionActionPage" data-section-field="actionPageId">
+                <option value="">صفحة التواصل</option>
+                ${state.pages.map((page) => `<option value="${escapeAttr(page.id)}" ${section.actionPageId === page.id ? "selected" : ""}>${escapeHtml(page.title)}</option>`).join("")}
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label for="sectionNote">ملاحظة زجاجية في الهيرو</label>
+            <input id="sectionNote" value="${escapeAttr(section.note || "")}" data-section-field="note">
+          </div>
+        ` : ""}
+      `;
+    }
+
+    function renderItemEditor(item, index, type = "gallery") {
+      if (type === "cards") return renderCardItemEditor(item, index);
+      if (type === "features") return renderFeatureItemEditor(item, index);
+      return `
+        <div class="item-editor" data-item-editor="${index}">
+          <div class="item-editor-head">
+            <strong>عنصر ${index + 1}</strong>
+            <button class="icon-btn danger" type="button" data-action="remove-draft-item" data-index="${index}">
+              <i data-lucide="trash-2"></i>
+            </button>
+          </div>
+          <div class="two-cols">
+            <div class="field">
+              <label>العنوان</label>
+              <input value="${escapeAttr(item.title || "")}" data-item-field="title" data-index="${index}">
+            </div>
+            <div class="field">
+              <label>الشكل</label>
+              <select data-item-field="shape" data-index="${index}">
+                <option value="rectangle" ${item.shape !== "square" ? "selected" : ""}>مستطيل</option>
+                <option value="square" ${item.shape === "square" ? "selected" : ""}>مربع</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label>الوصف</label>
+            <textarea data-item-field="text" data-index="${index}">${escapeHtml(item.text || "")}</textarea>
+          </div>
+          <div class="two-cols">
+            <div class="image-preview-card compact">
+              <img id="itemImagePreview-${index}" src="${escapeAttr(item.imageUrl || visual(item.title || "عنصر"))}" alt="">
+            </div>
+            <div class="field">
+              <label>لينك الصورة</label>
+              <input value="${escapeAttr(item.imageUrl || "")}" data-item-field="imageUrl" data-index="${index}">
+              <input type="file" accept="image/*" data-action="upload-item-image" data-index="${index}">
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderCardItemEditor(item, index) {
+      return `
+        <div class="item-editor" data-item-editor="${index}">
+          <div class="item-editor-head">
+            <strong>كارت ${index + 1}</strong>
+            <button class="icon-btn danger" type="button" data-action="remove-draft-item" data-index="${index}">
+              <i data-lucide="trash-2"></i>
+            </button>
+          </div>
+          <div class="two-cols">
+            <div class="field">
+              <label>العنوان</label>
+              <input value="${escapeAttr(item.title || "")}" data-item-field="title" data-index="${index}">
+            </div>
+            <div class="field">
+              <label>الشكل</label>
+              <select data-item-field="shape" data-index="${index}">
+                <option value="rectangle" ${item.shape !== "square" ? "selected" : ""}>مستطيل</option>
+                <option value="square" ${item.shape === "square" ? "selected" : ""}>مربع</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label>الوصف</label>
+            <textarea data-item-field="text" data-index="${index}">${escapeHtml(item.text || "")}</textarea>
+          </div>
+          <div class="two-cols">
+            <div class="image-preview-card compact">
+              <img id="itemCoverPreview-${index}" src="${escapeAttr(item.coverUrl || item.imageUrl || visual(item.title || "غلاف"))}" alt="">
+            </div>
+            <div class="field">
+              <label>صورة الغلاف الخارجي</label>
+              <input value="${escapeAttr(item.coverUrl || item.imageUrl || "")}" data-item-field="coverUrl" data-index="${index}">
+              <input type="file" accept="image/*" data-action="upload-item-field-image" data-field="coverUrl" data-index="${index}">
+            </div>
+          </div>
+          <div class="two-cols">
+            <div class="image-preview-card compact">
+              <img id="itemInsidePreview-${index}" src="${escapeAttr(item.insideUrl || visual(item.title || "داخل"))}" alt="">
+            </div>
+            <div class="field">
+              <label>صورة الغلاف الداخلي</label>
+              <input value="${escapeAttr(item.insideUrl || "")}" data-item-field="insideUrl" data-index="${index}">
+              <input type="file" accept="image/*" data-action="upload-item-field-image" data-field="insideUrl" data-index="${index}">
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderFeatureItemEditor(item, index) {
+      return `
+        <div class="item-editor" data-item-editor="${index}">
+          <div class="item-editor-head">
+            <strong>ميزة ${index + 1}</strong>
+            <button class="icon-btn danger" type="button" data-action="remove-draft-item" data-index="${index}">
+              <i data-lucide="trash-2"></i>
+            </button>
+          </div>
+          <div class="two-cols">
+            <div class="field">
+              <label>الكلمة / العنوان</label>
+              <input value="${escapeAttr(item.title || "")}" data-item-field="title" data-index="${index}">
+            </div>
+            <div class="field">
+              <label>وصف صغير</label>
+              <input value="${escapeAttr(item.text || "")}" data-item-field="text" data-index="${index}">
+            </div>
+          </div>
+          <div class="two-cols">
+            <div class="image-preview-card compact">
+              <img id="itemImagePreview-${index}" src="${escapeAttr(item.imageUrl || visual(item.title || "ميزة"))}" alt="">
+            </div>
+            <div class="field">
+              <label>صورة صغيرة</label>
+              <input value="${escapeAttr(item.imageUrl || "")}" data-item-field="imageUrl" data-index="${index}">
+              <input type="file" accept="image/*" data-action="upload-item-image" data-index="${index}">
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderPageModal() {
+      const page = findPage(state.modal.pageId);
+      if (!page) return "";
+      return `
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="pageModalTitle" data-modal-box>
+          <div class="modal-head">
+            <h2 id="pageModalTitle">تعديل التاب</h2>
+            <button class="icon-btn" type="button" data-action="close-modal" aria-label="إغلاق"><i data-lucide="x"></i></button>
+          </div>
+          <form class="modal-body form-grid" data-form="edit-page" data-page-id="${escapeAttr(page.id)}">
+            <div class="field">
+              <label for="editPageTitle">اسم التاب</label>
+              <input id="editPageTitle" name="title" value="${escapeAttr(page.title || "")}" required>
+            </div>
+            <div class="two-cols">
+              <div class="field">
+                <label for="editPageParent">تاب رئيسي</label>
+                <select id="editPageParent" name="parentId">
+                  <option value="">تاب رئيسي</option>
+                  ${topLevelPages().filter((item) => item.id !== page.id).map((item) => `<option value="${escapeAttr(item.id)}" ${page.parentId === item.id ? "selected" : ""}>${escapeHtml(item.title)}</option>`).join("")}
+                </select>
+              </div>
+              <div class="field">
+                <label for="editPageOrder">الترتيب</label>
+                <input id="editPageOrder" type="number" name="order" value="${Number(page.order || 0)}">
+              </div>
+            </div>
+            <div class="actions-row">
+              <button class="tool-btn" type="submit">
+                <i data-lucide="save"></i>
+                حفظ
+              </button>
+              <button class="tool-btn ghost" type="button" data-action="close-modal">إلغاء</button>
+            </div>
+          </form>
+        </div>
+      `;
+    }
+
+    function renderLightboxModal() {
+      const page = findPage(state.modal.pageId);
+      const section = ensureItems(page?.sections)[Number(state.modal.sectionIndex)];
+      const item = ensureItems(section?.items)[Number(state.modal.itemIndex)] || section || {};
+      return `
+        <div class="modal wide" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" data-modal-box>
+          <div class="modal-head">
+            <h2 id="lightboxTitle">${escapeHtml(item.title || section?.title || "عرض الصورة")}</h2>
+            <button class="icon-btn" type="button" data-action="close-modal" aria-label="إغلاق"><i data-lucide="x"></i></button>
+          </div>
+          <div class="modal-body">
+            <img class="lightbox-image" src="${escapeAttr(item.insideUrl || item.imageUrl || item.coverUrl || section?.imageUrl || visual(item.title || "عمل"))}" alt="${escapeAttr(item.title || "")}">
+            ${item.text ? `<p class="text-body" style="margin-top:16px">${escapeHtml(item.text)}</p>` : ""}
+          </div>
+        </div>
+      `;
+    }
+
+    async function handleSubmit(event) {
+      const form = event.target.closest("form");
+      if (!form) return;
+      const formType = form.dataset.form;
+      if (!formType) return;
+      event.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      try {
+        if (formType === "login") await login(data);
+        if (formType === "settings") await saveSettings(data);
+        if (formType === "page") await addPage(data);
+        if (formType === "edit-page") await editPage(form.dataset.pageId, data);
+        if (formType === "section") await saveSectionDraft();
+        if (formType === "contact-message") await sendContactMessage(data, form);
+        if (formType === "review") await sendReview(data, form);
+        if (formType === "survey") await sendSurvey(data, form);
+      } catch (error) {
+        console.error(error);
+        showToast(error.message || "حصل خطأ غير متوقع.");
+      }
+    }
+
+    function handleClick(event) {
+      const modalBox = event.target.closest("[data-modal-box]");
+      if (state.pinnedSubnavId && !event.target.closest(".nav-item")) {
+        state.pinnedSubnavId = "";
+        renderApp();
+        return;
+      }
+      const actionEl = event.target.closest("[data-action]");
+      if (!actionEl) return;
+      const action = actionEl.dataset.action;
+      if (action === "toggle-subnav") {
+        if (Date.now() < state.suppressNavClickUntil) {
+          event.preventDefault();
+          return;
+        }
+        const pageId = actionEl.dataset.pageId || "";
+        state.pinnedSubnavId = state.pinnedSubnavId === pageId ? "" : pageId;
+        renderApp();
+        return;
+      }
+      if (action === "close-modal") {
+        const isBackdropClick = actionEl.classList.contains("modal-backdrop") && event.target === actionEl;
+        const isCloseControl = !actionEl.classList.contains("modal-backdrop");
+        if (isBackdropClick || isCloseControl) {
+          state.modal = null;
+          renderApp();
+        }
+        return;
+      }
+      if (action === "toggle-contact") {
+        state.contactOpen = !state.contactOpen;
+        renderApp();
+      }
+      if (action === "toggle-menu") {
+        state.menuOpen = !state.menuOpen;
+        renderApp();
+      }
+      if (action === "quick-add-page") {
+        quickAddPage(actionEl.dataset.parentId || "");
+      }
+      if (action === "quick-add-section") {
+        quickAddSection(actionEl.dataset.pageId, actionEl.dataset.type || "image");
+      }
+      if (action === "add-card-item") {
+        addCardItem(actionEl.dataset.pageId, Number(actionEl.dataset.index), Number(actionEl.dataset.after));
+      }
+      if (action === "scroll-palette") {
+        document.querySelector(".section-palette")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      if (action === "open-login") {
+        state.modal = { type: "login" };
+        renderApp();
+      }
+      if (action === "forgot-password") {
+        forgotPassword();
+      }
+      if (action === "logout") {
+        signOut(auth).then(() => showToast("تم تسجيل الخروج."));
+      }
+      if (action === "message-filter") {
+        state.messageFilter = actionEl.dataset.filter || "all";
+        renderApp();
+      }
+      if (action === "mark-read") {
+        markMessageRead(actionEl.dataset.id);
+      }
+      if (action === "delete-message") {
+        deleteMessage(actionEl.dataset.id);
+      }
+      if (action === "delete-review") {
+        deleteReview(actionEl.dataset.id);
+      }
+      if (action === "delete-survey") {
+        deleteSurvey(actionEl.dataset.id);
+      }
+      if (action === "select-editor-page") {
+        state.selectedEditorPageId = actionEl.dataset.pageId;
+        renderApp();
+      }
+      if (action === "open-page-editor") {
+        state.modal = { type: "page", pageId: actionEl.dataset.pageId };
+        renderApp();
+      }
+      if (action === "delete-page") {
+        deletePage(actionEl.dataset.pageId);
+      }
+      if (action === "open-section-editor") {
+        openSectionEditor(actionEl.dataset.pageId, actionEl.dataset.index === undefined ? null : Number(actionEl.dataset.index));
+      }
+      if (action === "delete-section") {
+        deleteSection(actionEl.dataset.pageId, Number(actionEl.dataset.index));
+      }
+      if (action === "move-section") {
+        moveSection(actionEl.dataset.pageId, Number(actionEl.dataset.index), Number(actionEl.dataset.dir));
+      }
+      if (action === "add-draft-item") {
+        state.sectionDraft.items = ensureItems(state.sectionDraft.items);
+        state.sectionDraft.items.push(blankItemForType(state.sectionDraft.type));
+        renderApp();
+      }
+      if (action === "remove-draft-item") {
+        state.sectionDraft.items = ensureItems(state.sectionDraft.items).filter((_, index) => index !== Number(actionEl.dataset.index));
+        renderApp();
+      }
+      if (action === "open-lightbox") {
+        state.modal = {
+          type: "lightbox",
+          pageId: actionEl.dataset.pageId,
+          sectionIndex: actionEl.dataset.index,
+          itemIndex: actionEl.dataset.item
+        };
+        renderApp();
+      }
+      if (action === "accordion") {
+        state.activeAccordion[actionEl.dataset.key] = Number(actionEl.dataset.index);
+        renderApp();
+      }
+    }
+
+    function handleTabDragStart(event) {
+      const dragEl = event.target.closest("[data-drag-kind]");
+      if (!state.user || !dragEl) return;
+      if (event.target.closest("button") || event.target.closest("input") || event.target.closest("textarea") || event.target.closest("select")) {
+        event.preventDefault();
+        return;
+      }
+      const kind = dragEl.dataset.dragKind;
+      const pageId = dragEl.dataset.pageId;
+      const parentId = dragEl.dataset.parentId || "";
+      if (!pageId) return;
+      state.tabDrag = { kind, pageId, parentId };
+      state.pinnedSubnavId = parentId || pageId;
+      dragEl.classList.add("dragging");
+      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.setData("text/plain", JSON.stringify(state.tabDrag));
+    }
+
+    function handleTabDragOver(event) {
+      if (!state.user || !state.tabDrag) return;
+      const target = getDropTarget(event.target, state.tabDrag.kind);
+      if (!target) return;
+      const targetParent = target.dataset.parentId || "";
+      if (target.dataset.pageId === state.tabDrag.pageId || targetParent !== state.tabDrag.parentId) return;
+      event.preventDefault();
+      event.dataTransfer.dropEffect = "move";
+      document.querySelectorAll(".drag-over").forEach((item) => item.classList.remove("drag-over"));
+      target.classList.add("drag-over");
+    }
+
+    function handleTabDragLeave(event) {
+      const target = event.target.closest(".drag-over");
+      if (target && !target.contains(event.relatedTarget)) {
+        target.classList.remove("drag-over");
+      }
+    }
+
+    async function handleTabDrop(event) {
+      if (!state.user || !state.tabDrag) return;
+      const target = getDropTarget(event.target, state.tabDrag.kind);
+      if (!target) return;
+      const targetParent = target.dataset.parentId || "";
+      if (target.dataset.pageId === state.tabDrag.pageId || targetParent !== state.tabDrag.parentId) return;
+      event.preventDefault();
+      const after = shouldPlaceAfterDrop(event, target, state.tabDrag.kind);
+      const drag = { ...state.tabDrag };
+      handleTabDragEnd();
+      try {
+        await reorderPageTabs(drag.pageId, target.dataset.pageId, drag.parentId, after);
+        showToast("تم حفظ ترتيب التابات.");
+      } catch (error) {
+        console.error(error);
+        showToast(error.message || "مش قادر أحفظ ترتيب التابات.");
+      }
+    }
+
+    function handleTabDragEnd() {
+      document.querySelectorAll(".dragging, .drag-over").forEach((item) => item.classList.remove("dragging", "drag-over"));
+      state.tabDrag = null;
+      state.suppressNavClickUntil = Date.now() + 250;
+    }
+
+    function getDropTarget(target, kind) {
+      if (kind === "sub-tab") return target.closest('.subnav-row[data-drag-kind="sub-tab"]');
+      return target.closest('.nav-item[data-drag-kind="main-tab"]');
+    }
+
+    function shouldPlaceAfterDrop(event, target, kind) {
+      const rect = target.getBoundingClientRect();
+      const vertical = kind === "sub-tab" || Math.abs(rect.height) > Math.abs(rect.width);
+      if (vertical) return event.clientY > rect.top + rect.height / 2;
+      const rtl = getComputedStyle(document.body).direction === "rtl";
+      return rtl ? event.clientX < rect.left + rect.width / 2 : event.clientX > rect.left + rect.width / 2;
+    }
+
+    function handleInput(event) {
+      if (event.target.id === "globalSearch") {
+        state.searchQuery = event.target.value;
+        renderSearchResults();
+      }
+      if (event.target.dataset.sectionField) {
+        const field = event.target.dataset.sectionField;
+        state.sectionDraft[field] = event.target.value;
+        if (field === "imageUrl") {
+          updatePreviewImage("sectionImagePreview", event.target.value, state.sectionDraft.title || "صورة");
+        }
+        if (field === "type" && !sectionUsesItems(event.target.value)) {
+          state.sectionDraft.items = [];
+        }
+        if (field === "type" && sectionUsesItems(event.target.value) && !ensureItems(state.sectionDraft.items).length) {
+          state.sectionDraft.items = [blankItemForType(event.target.value)];
+        }
+        if (field === "type") renderApp();
+      }
+      if (event.target.dataset.itemField) {
+        const index = Number(event.target.dataset.index);
+        state.sectionDraft.items = ensureItems(state.sectionDraft.items);
+        state.sectionDraft.items[index] = {
+          ...state.sectionDraft.items[index],
+          [event.target.dataset.itemField]: event.target.value
+        };
+        if (["imageUrl", "coverUrl", "insideUrl"].includes(event.target.dataset.itemField)) {
+          updatePreviewImage(itemPreviewId(event.target.dataset.itemField, index), event.target.value, state.sectionDraft.items[index]?.title || "عنصر");
+        }
+      }
+    }
+
+    async function handleChange(event) {
+      const action = event.target.dataset.action;
+      if (!action) return;
+      if (action === "upload-setting-image") {
+        const targetId = event.target.dataset.target;
+        const url = await uploadImage(event.target.files?.[0]);
+        const input = document.getElementById(targetId);
+        if (input) input.value = url;
+      }
+      if (action === "upload-section-image") {
+        const file = event.target.files?.[0];
+        previewLocalFile("sectionImagePreview", file);
+        const url = await uploadImage(file);
+        const field = event.target.dataset.target || "imageUrl";
+        state.sectionDraft[field] = url;
+        renderApp();
+      }
+      if (action === "upload-item-image" || action === "upload-item-field-image") {
+        const file = event.target.files?.[0];
+        const index = Number(event.target.dataset.index);
+        const field = event.target.dataset.field || "imageUrl";
+        previewLocalFile(itemPreviewId(field, index), file);
+        const url = await uploadImage(file);
+        state.sectionDraft.items = ensureItems(state.sectionDraft.items);
+        state.sectionDraft.items[index] = { ...state.sectionDraft.items[index], [field]: url };
+        if (field === "coverUrl" && !state.sectionDraft.items[index].imageUrl) {
+          state.sectionDraft.items[index].imageUrl = url;
+        }
+        renderApp();
+      }
+    }
+
+    async function login(data) {
+      try {
+        await signInWithEmailAndPassword(auth, data.email, data.password);
+      } catch (error) {
+        throw new Error(friendlyAuthError(error));
+      }
+      state.modal = null;
+      showToast("تم تسجيل الدخول.");
+      renderApp();
+    }
+
+    function friendlyAuthError(error) {
+      const code = String(error?.code || "");
+      if (code.includes("wrong-password") || code.includes("invalid-credential")) return "الإيميل أو الباسورد غلط.";
+      if (code.includes("user-not-found")) return "الإيميل ده مش موجود.";
+      if (code.includes("invalid-email")) return "الإيميل مكتوب غلط.";
+      if (code.includes("too-many-requests")) return "محاولات كتير. جرب تاني بعد شوية.";
+      if (code.includes("network-request-failed")) return "في مشكلة اتصال. راجع النت وجرب تاني.";
+      return "حصلت مشكلة في تسجيل الدخول.";
+    }
+
+    async function forgotPassword() {
+      const email = document.getElementById("loginEmail")?.value?.trim();
+      if (!email) {
+        showToast("اكتب الإيميل الأول عشان نبعت رسالة استعادة.");
+        return;
+      }
+      await sendPasswordResetEmail(auth, email);
+      showToast("تم إرسال رسالة استعادة الباسورد على الإيميل.");
+    }
+
+    async function saveSettings(data) {
+      requireAdmin();
+      const payload = {
+        ...state.settings,
+        ...data,
+        textScale: Number(data.textScale || 1),
+        updatedAt: serverTimestamp()
+      };
+      await setDoc(doc(db, "siteSettings", "main"), payload, { merge: true });
+      showToast("تم حفظ إعدادات المنصة.");
+    }
+
+    async function savePageOrderGroup(parentId, orderedPages) {
+      requireAdmin();
+      const normalizedParent = parentId || "";
+      state.pages = state.pages.map((page) => {
+        const nextIndex = orderedPages.findIndex((item) => item.id === page.id);
+        if (nextIndex === -1) return page;
+        return { ...page, parentId: normalizedParent, order: nextIndex };
+      });
+      renderApp();
+      await Promise.all(orderedPages.map((page, index) => setDoc(doc(db, "sitePages", page.id), {
+        title: page.title || "تاب",
+        slug: page.slug || slugify(page.title || page.id),
+        parentId: normalizedParent,
+        order: index,
+        sections: ensureItems(page.sections),
+        updatedAt: serverTimestamp(),
+        ...(!page.createdAt ? { createdAt: serverTimestamp() } : {})
+      }, { merge: true })));
+    }
+
+    async function reorderPageTabs(sourceId, targetId, parentId = "", after = false) {
+      requireAdmin();
+      const normalizedParent = parentId || "";
+      const siblings = state.pages
+        .filter((page) => (page.parentId || "") === normalizedParent)
+        .sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+      const sourceIndex = siblings.findIndex((page) => page.id === sourceId);
+      const targetIndex = siblings.findIndex((page) => page.id === targetId);
+      if (sourceIndex === -1 || targetIndex === -1 || sourceIndex === targetIndex) return;
+      const [moved] = siblings.splice(sourceIndex, 1);
+      const targetIndexAfterRemoval = siblings.findIndex((page) => page.id === targetId);
+      siblings.splice(targetIndexAfterRemoval + (after ? 1 : 0), 0, moved);
+      await savePageOrderGroup(normalizedParent, siblings);
+    }
+
+    async function applyEditedPageOrder(pageId, data) {
+      requireAdmin();
+      const current = findPage(pageId);
+      if (!current) throw new Error("التاب غير موجود.");
+      const normalizedParent = data.parentId || "";
+      const cleanPage = {
+        ...current,
+        title: data.title.trim(),
+        slug: slugify(data.title),
+        parentId: normalizedParent,
+        order: Number(data.order || 0),
+        sections: ensureItems(current.sections)
+      };
+      const oldParent = current.parentId || "";
+      const affectedParents = [...new Set([oldParent, normalizedParent])];
+      state.pages = state.pages.map((page) => page.id === pageId ? cleanPage : page);
+
+      const requestedOrder = Math.max(0, Math.floor(Number(data.order || 0)));
+      const newSiblings = state.pages
+        .filter((page) => (page.parentId || "") === normalizedParent && page.id !== pageId)
+        .sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+      const insertAt = Math.min(requestedOrder, newSiblings.length);
+      newSiblings.splice(insertAt, 0, cleanPage);
+
+      const oldSiblings = oldParent !== normalizedParent
+        ? state.pages.filter((page) => (page.parentId || "") === oldParent && page.id !== pageId).sort((a, b) => Number(a.order || 0) - Number(b.order || 0))
+        : [];
+
+      await Promise.all([
+        savePageOrderGroup(normalizedParent, newSiblings),
+        ...(oldSiblings.length || affectedParents.includes(oldParent) && oldParent !== normalizedParent ? [savePageOrderGroup(oldParent, oldSiblings)] : [])
+      ]);
+    }
+
+    async function addPage(data) {
+      requireAdmin();
+      const id = uniqueId(slugify(data.title || "page"));
+      const page = {
+        title: data.title.trim(),
+        slug: slugify(data.title),
+        parentId: data.parentId || "",
+        order: Number(data.order || state.pages.length + 1),
+        sections: [],
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp()
+      };
+      await setDoc(doc(db, "sitePages", id), page);
+      state.selectedEditorPageId = id;
+      showToast("تم إضافة التاب.");
+    }
+
+    async function quickAddPage(parentId = "") {
+      requireAdmin();
+      const siblings = state.pages.filter((page) => (page.parentId || "") === parentId);
+      const title = parentId ? `تاب فرعي جديد ${siblings.length + 1}` : `تاب جديد ${siblings.length + 1}`;
+      const id = uniqueId(slugify(title));
+      const localPage = {
+        title,
+        slug: slugify(title),
+        parentId,
+        order: siblings.length + 1,
+        sections: [],
+        createdAt: null,
+        updatedAt: null
+      };
+      const page = {
+        ...localPage,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp()
+      };
+      state.pages = [...state.pages.filter((item) => item.id !== id), { id, ...localPage }];
+      state.selectedEditorPageId = id;
+      state.menuOpen = false;
+      state.modal = { type: "page", pageId: id };
+      location.hash = pageHash(id);
+      renderApp();
+      await setDoc(doc(db, "sitePages", id), page);
+      showToast(parentId ? "اكتب اسم التاب الفرعي واحفظ." : "اكتب اسم التاب واحفظ.");
+    }
+
+    async function editPage(pageId, data) {
+      requireAdmin();
+      await applyEditedPageOrder(pageId, data);
+      state.modal = null;
+      showToast("تم تعديل التاب وحفظ الترتيب.");
+      renderApp();
+    }
+
+    async function deletePage(pageId) {
+      requireAdmin();
+      if (!canDeletePage(pageId)) {
+        showToast("التاب ده أساسي ومش بيتحذف.");
+        return;
+      }
+      if (!confirm("حذف التاب هيحذف الصفحة ومحتواها. متأكد؟")) return;
+      await deleteDoc(doc(db, "sitePages", pageId));
+      const children = state.pages.filter((page) => page.parentId === pageId);
+      await Promise.all(children.map((child) => updateDoc(doc(db, "sitePages", child.id), { parentId: "", updatedAt: serverTimestamp() })));
+      state.selectedEditorPageId = topLevelPages()[0]?.id || "";
+      if (getCurrentPageId() === pageId) location.hash = pageHash("home");
+      showToast("تم حذف التاب.");
+    }
+
+    function openSectionEditor(pageId, index = null) {
+      const page = findPage(pageId);
+      if (!page) return;
+      const existing = index === null ? createBlankSection() : structuredClone(ensureItems(page.sections)[index]);
+      state.sectionDraft = existing;
+      state.sectionDraftIndex = index;
+      state.sectionDraftPageId = pageId;
+      state.modal = { type: "section" };
+      renderApp();
+    }
+
+    async function quickAddSection(pageId, type = "image") {
+      requireAdmin();
+      const page = findPage(pageId);
+      if (!page) throw new Error("الصفحة غير موجودة.");
+      const sections = ensureItems(page.sections);
+      const section = cleanSection(createBlankSection(type));
+      sections.unshift(section);
+      page.sections = sections;
+      state.sectionDraft = structuredClone(section);
+      state.sectionDraftIndex = 0;
+      state.sectionDraftPageId = page.id;
+      state.modal = { type: "section" };
+      renderApp();
+      await setDoc(doc(db, "sitePages", page.id), {
+        ...page,
+        sections,
+        updatedAt: serverTimestamp()
+      }, { merge: true });
+      showToast("تم إضافة السيكشن فوق. كمل بياناته واحفظ.");
+    }
+
+    async function addCardItem(pageId, sectionIndex, afterIndex = -1) {
+      requireAdmin();
+      const page = findPage(pageId);
+      if (!page) throw new Error("الصفحة غير موجودة.");
+      const sections = ensureItems(page.sections);
+      const section = sections[sectionIndex];
+      if (!section) throw new Error("السيكشن غير موجود.");
+      const items = ensureItems(section.items);
+      items.splice(afterIndex + 1, 0, blankItemForType(section.type || "cards"));
+      section.items = items;
+      sections[sectionIndex] = section;
+      page.sections = sections;
+      state.sectionDraft = structuredClone(section);
+      state.sectionDraftIndex = sectionIndex;
+      state.sectionDraftPageId = pageId;
+      state.modal = { type: "section" };
+      renderApp();
+      await setDoc(doc(db, "sitePages", pageId), {
+        ...page,
+        sections,
+        updatedAt: serverTimestamp()
+      }, { merge: true });
+    }
+
+    async function saveSectionDraft() {
+      requireAdmin();
+      const page = findPage(state.sectionDraftPageId);
+      if (!page) throw new Error("الصفحة غير موجودة.");
+      const sections = ensureItems(page.sections);
+      const clean = cleanSection(state.sectionDraft);
+      if (state.sectionDraftIndex === null) {
+        sections.unshift(clean);
+      } else {
+        sections[state.sectionDraftIndex] = clean;
+      }
+      await setDoc(doc(db, "sitePages", page.id), {
+        ...page,
+        sections,
+        updatedAt: serverTimestamp()
+      }, { merge: true });
+      state.modal = null;
+      showToast("تم حفظ السيكشن.");
+      renderApp();
+    }
+
+    async function deleteSection(pageId, index) {
+      requireAdmin();
+      if (!confirm("متأكد من حذف السيكشن؟")) return;
+      const page = findPage(pageId);
+      const sections = ensureItems(page.sections).filter((_, itemIndex) => itemIndex !== index);
+      await updateDoc(doc(db, "sitePages", pageId), { sections, updatedAt: serverTimestamp() });
+      showToast("تم حذف السيكشن.");
+    }
+
+    async function moveSection(pageId, index, dir) {
+      requireAdmin();
+      const page = findPage(pageId);
+      const sections = ensureItems(page.sections);
+      const next = index + dir;
+      if (next < 0 || next >= sections.length) return;
+      [sections[index], sections[next]] = [sections[next], sections[index]];
+      await updateDoc(doc(db, "sitePages", pageId), { sections, updatedAt: serverTimestamp() });
+    }
+
+    async function sendContactMessage(data, form) {
+      if (!db) throw new Error("الخدمة غير متاحة حاليًا.");
+      const payload = {
+        name: data.name.trim(),
+        contact: data.contact.trim(),
+        body: data.body.trim(),
+        read: false,
+        source: "site-contact-form",
+        createdAt: serverTimestamp()
+      };
+      await addDoc(collection(db, "messages"), payload);
+      form.reset();
+      showToast("تم إرسال الرسالة. هنتواصل معاك قريب.");
+    }
+
+    async function sendReview(data, form) {
+      if (!db) throw new Error("الخدمة غير متاحة حاليًا.");
+      const payload = {
+        name: String(data.name || "").trim(),
+        rating: Number(data.rating || 5),
+        comment: String(data.comment || "").trim(),
+        source: "site-review-form",
+        createdAt: serverTimestamp()
+      };
+      await addDoc(collection(db, "reviews"), payload);
+      form.reset();
+      showToast("تم إرسال التقييم.");
+    }
+
+    async function deleteReview(id) {
+      requireAdmin();
+      if (!confirm("حذف التقييم؟")) return;
+      await deleteDoc(doc(db, "reviews", id));
+      showToast("تم حذف التقييم.");
+    }
+
+    async function sendSurvey(data, form) {
+      if (!db) throw new Error("الخدمة غير متاحة حاليًا.");
+      const payload = {
+        name: String(data.name || "").trim(),
+        question: String(data.question || "").trim(),
+        rating: Number(data.rating || 5),
+        comment: String(data.comment || "").trim(),
+        source: "site-survey-form",
+        createdAt: serverTimestamp()
+      };
+      await addDoc(collection(db, "surveys"), payload);
+      form.reset();
+      showToast("تم إرسال الرد.");
+    }
+
+    async function deleteSurvey(id) {
+      requireAdmin();
+      if (!confirm("حذف رد السيرفاي؟")) return;
+      await deleteDoc(doc(db, "surveys", id));
+      showToast("تم حذف رد السيرفاي.");
+    }
+
+    async function markMessageRead(id) {
+      requireAdmin();
+      await updateDoc(doc(db, "messages", id), { read: true, readAt: serverTimestamp() });
+    }
+
+    async function deleteMessage(id) {
+      requireAdmin();
+      if (!confirm("حذف الرسالة؟")) return;
+      await deleteDoc(doc(db, "messages", id));
+      showToast("تم حذف الرسالة.");
+    }
+
+    async function uploadImage(file) {
+      if (!file) throw new Error("اختار صورة الأول.");
+      showToast("جاري رفع الصورة...");
+      const form = new FormData();
+      form.append("image", file);
+      const res = await fetch(`https://api.imgbb.com/1/upload?key=${IMAGE_API_KEY}`, {
+        method: "POST",
+        body: form
+      });
+      const data = await res.json();
+      if (!res.ok || !data?.data?.url) {
+        throw new Error(data?.error?.message || "فشل رفع الصورة على API الصور.");
+      }
+      showToast("تم رفع الصورة.");
+      return data.data.url;
+    }
+
+    function cleanSection(section) {
+      return {
+        id: section.id || uniqueId("section"),
+        type: section.type || "text",
+        title: section.title || "",
+        text: section.text || "",
+        eyebrow: section.eyebrow || "",
+        imageUrl: section.imageUrl || "",
+        layout: section.layout || "normal",
+        actionText: section.actionText || "",
+        actionPageId: section.actionPageId || "",
+        secondaryText: section.secondaryText || "",
+        note: section.note || "",
+        items: ensureItems(section.items).map((item) => ({
+          title: item.title || "",
+          text: item.text || "",
+          imageUrl: item.imageUrl || "",
+          coverUrl: item.coverUrl || "",
+          insideUrl: item.insideUrl || "",
+          shape: item.shape || "rectangle"
+        }))
+      };
+    }
+
+    function createBlankSection(type = "image") {
+      return {
+        id: uniqueId("section"),
+        type,
+        title: "",
+        text: "",
+        eyebrow: "",
+        imageUrl: "",
+        layout: "normal",
+        items: defaultItemsForType(type)
+      };
+    }
+
+    function defaultItemsForType(type) {
+      if (sectionUsesItems(type)) return [blankItemForType(type)];
+      return [];
+    }
+
+    function sectionUsesItems(type) {
+      return ["cards", "gallery", "accordion", "features"].includes(type);
+    }
+
+    function blankItemForType(type) {
+      if (type === "features") return { title: "", text: "", imageUrl: "", shape: "rectangle" };
+      if (type === "cards") return { title: "", text: "", imageUrl: "", coverUrl: "", insideUrl: "", shape: "rectangle" };
+      return { title: "", text: "", imageUrl: "", shape: "rectangle" };
+    }
+
+    function sectionHasPublicContent(section) {
+      const hasMain = Boolean(
+        hasMeaningfulText(section.title)
+        || hasMeaningfulText(section.text)
+        || hasMeaningfulText(section.eyebrow)
+        || hasMeaningfulText(section.note)
+        || (section.imageUrl || "").trim()
+      );
+      if (["hero", "image", "text"].includes(section.type)) return hasMain;
+      if (["reviews", "survey"].includes(section.type)) return true;
+      return ensureItems(section.items).some(itemHasPublicContent);
+    }
+
+    function hasMeaningfulText(value) {
+      const text = String(value || "").trim();
+      if (!text) return false;
+      const normalized = text.replace(/\s+\d+$/g, "");
+      return !["عنصر جديد", "تاب جديد", "تاب فرعي جديد", "سيكشن جديد"].includes(normalized);
+    }
+
+    function updatePreviewImage(id, value, fallbackTitle) {
+      const img = document.getElementById(id);
+      if (!img) return;
+      const url = String(value || "").trim();
+      img.src = url || visual(fallbackTitle || "صورة");
+    }
+
+    function previewLocalFile(id, file) {
+      const img = document.getElementById(id);
+      if (!img || !file) return;
+      img.src = URL.createObjectURL(file);
+    }
+
+    function requireAdmin() {
+      if (!state.user) throw new Error("لازم تسجل دخول كأدمن.");
+      if (!db) throw new Error("الخدمة غير متاحة حاليًا.");
+    }
+
+    function topLevelPages() {
+      return state.pages
+        .filter((page) => !page.parentId)
+        .sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+    }
+
+    function childPages(parentId) {
+      return state.pages
+        .filter((page) => page.parentId === parentId)
+        .sort((a, b) => Number(a.order || 0) - Number(b.order || 0));
+    }
+
+    function findPage(id) {
+      return state.pages.find((page) => page.id === id);
+    }
+
+    function canDeletePage(pageId) {
+      return !["home", "contact", "reviews"].includes(pageId);
+    }
+
+    function getCurrentPageId() {
+      if (!state.currentRoute.startsWith("page/")) return "";
+      const encoded = state.currentRoute.slice("page/".length) || "home";
+      try {
+        return decodeURIComponent(encoded);
+      } catch (error) {
+        return encoded;
+      }
+    }
+
+    function pageHash(pageId) {
+      return `#page/${encodeURIComponent(pageId)}`;
+    }
+
+    function ensureItems(value) {
+      return Array.isArray(value) ? value : [];
+    }
+
+    function visibleSectionItems(value) {
+      const items = ensureItems(value);
+      return state.user ? items : items.filter(itemHasPublicContent);
+    }
+
+    function itemHasPublicContent(item) {
+      return Boolean(
+        hasMeaningfulText(item.title)
+        || hasMeaningfulText(item.text)
+        || (item.imageUrl || "").trim()
+        || (item.coverUrl || "").trim()
+        || (item.insideUrl || "").trim()
+      );
+    }
+
+    function itemPreviewId(field, index) {
+      if (field === "coverUrl") return `itemCoverPreview-${index}`;
+      if (field === "insideUrl") return `itemInsidePreview-${index}`;
+      return `itemImagePreview-${index}`;
+    }
+
+    function sectionTypes() {
+      return [
+        { value: "image", label: "صورة", icon: "image" },
+        { value: "gallery", label: "جاليري", icon: "gallery-horizontal" },
+        { value: "cards", label: "كروت", icon: "layout-grid" },
+        { value: "text", label: "نص", icon: "file-text" },
+        { value: "accordion", label: "عناوين", icon: "list-collapse" },
+        { value: "hero", label: "هيرو", icon: "panel-top" },
+        { value: "features", label: "مميزات", icon: "badge-check" },
+        { value: "reviews", label: "تقييمات", icon: "star" },
+        { value: "survey", label: "سيرفاي", icon: "clipboard-check" }
+      ];
+    }
+
+    function sectionTypeMeta(type) {
+      return sectionTypes().find((item) => item.value === type) || sectionTypes()[0];
+    }
+
+    function fontOptions() {
+      return [
+        { label: "Segoe UI", value: "Segoe UI, Tahoma, Arial, sans-serif" },
+        { label: "Tahoma", value: "Tahoma, Arial, sans-serif" },
+        { label: "Arial", value: "Arial, sans-serif" },
+        { label: "Trebuchet", value: "Trebuchet MS, Arial, sans-serif" },
+        { label: "Georgia", value: "Georgia, serif" }
+      ];
+    }
+
+    function slugify(text) {
+      const normalized = arabicNormalize(text || "page").replace(/[^a-z0-9\u0621-\u064a]+/gi, "-").replace(/^-|-$/g, "");
+      return normalized || "page";
+    }
+
+    function uniqueId(prefix) {
+      return `${prefix}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 7)}`;
+    }
+
+    function whatsappUrl() {
+      const raw = String(state.settings.whatsapp || defaultSettings.whatsapp).replace(/\D/g, "");
+      const egypt = raw.startsWith("20") ? raw : raw.startsWith("0") ? `20${raw.slice(1)}` : `20${raw}`;
+      return `https://wa.me/${egypt}`;
+    }
+
+    function renderSearchResults() {
+      const root = document.getElementById("searchResults");
+      if (!root) return;
+      const queryText = state.searchQuery.trim();
+      if (!queryText) {
+        root.classList.remove("open");
+        root.innerHTML = "";
+        return;
+      }
+      const results = searchSite(queryText).slice(0, 8);
+      root.classList.add("open");
+      root.innerHTML = results.length ? results.map((result) => `
+        <a class="search-result" href="${pageHash(result.pageId)}">
+          <strong>${escapeHtml(result.title)}</strong>
+          <span>${escapeHtml(result.excerpt)}</span>
+        </a>
+      `).join("") : `
+        <div class="search-result">
+          <strong>مفيش نتيجة واضحة</strong>
+          <span>جرب كلمة قريبة أو بدون همزات.</span>
+        </div>
+      `;
+    }
+
+    function searchSite(queryText) {
+      const queryNorm = arabicNormalize(queryText);
+      const tokens = queryNorm.split(" ").filter(Boolean);
+      const hay = [];
+      state.pages.forEach((page) => {
+        const pageText = [page.title, page.slug].join(" ");
+        hay.push({
+          pageId: page.id,
+          title: page.title,
+          excerpt: "صفحة / تاب",
+          text: pageText
+        });
+        ensureItems(page.sections).forEach((section) => {
+          hay.push({
+            pageId: page.id,
+            title: section.title || page.title,
+            excerpt: [section.text, ...ensureItems(section.items).map((item) => `${item.title} ${item.text}`)].join(" ").slice(0, 150),
+            text: [page.title, section.title, section.text, ...ensureItems(section.items).map((item) => `${item.title} ${item.text}`)].join(" ")
+          });
+        });
+      });
+      return hay
+        .map((item) => {
+          const textNorm = arabicNormalize(item.text);
+          let score = textNorm.includes(queryNorm) ? 100 : 0;
+          score += tokens.filter((token) => textNorm.includes(token)).length * 20;
+          if (!score) {
+            const words = textNorm.split(" ").filter(Boolean);
+            score = tokens.reduce((sum, token) => {
+              const best = Math.max(0, ...words.map((word) => similarity(token, word)));
+              return sum + best;
+            }, 0);
+          }
+          return { ...item, score };
+        })
+        .filter((item) => item.score > 0.42 || item.score >= 20)
+        .sort((a, b) => b.score - a.score);
+    }
+
+    function arabicNormalize(value) {
+      return String(value || "")
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u064b-\u065f\u0670]/g, "")
+        .replace(/[أإآٱ]/g, "ا")
+        .replace(/ة/g, "ه")
+        .replace(/ى/g, "ي")
+        .replace(/[ؤئء]/g, "")
+        .replace(/[^\u0621-\u064aa-z0-9\s]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function similarity(a, b) {
+      if (!a || !b) return 0;
+      if (b.includes(a) || a.includes(b)) return 0.8;
+      const distance = levenshtein(a, b);
+      return 1 - distance / Math.max(a.length, b.length);
+    }
+
+    function levenshtein(a, b) {
+      const matrix = Array.from({ length: a.length + 1 }, () => Array(b.length + 1).fill(0));
+      for (let i = 0; i <= a.length; i++) matrix[i][0] = i;
+      for (let j = 0; j <= b.length; j++) matrix[0][j] = j;
+      for (let i = 1; i <= a.length; i++) {
+        for (let j = 1; j <= b.length; j++) {
+          matrix[i][j] = Math.min(
+            matrix[i - 1][j] + 1,
+            matrix[i][j - 1] + 1,
+            matrix[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)
+          );
+        }
+      }
+      return matrix[a.length][b.length];
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function escapeAttr(value) {
+      return escapeHtml(value);
+    }
+
+    function refreshIcons() {
+      if (window.lucide?.createIcons) {
+        window.lucide.createIcons({ attrs: { width: 20, height: 20, "stroke-width": 2.2 } });
+      }
+    }
+
+    function showToast(message) {
+      toastEl.textContent = message;
+      toastEl.classList.add("show");
+      clearTimeout(showToast.timer);
+      showToast.timer = setTimeout(() => toastEl.classList.remove("show"), 3200);
+    }
+  </script>
+</body>
+</html>
