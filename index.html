@@ -811,6 +811,58 @@
       border-left: 0;
     }
 
+    .feature-item,
+    .content-card {
+      position: relative;
+    }
+
+    .item-admin-tools {
+      position: absolute;
+      z-index: 8;
+      top: 8px;
+      left: 8px;
+      display: inline-flex;
+      gap: 6px;
+      padding: 5px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--surface-strong) 88%, transparent);
+      box-shadow: 0 12px 26px rgba(33, 55, 72, 0.13);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .item-admin-tools .icon-btn {
+      width: 34px;
+      height: 34px;
+      background: color-mix(in srgb, var(--surface-strong) 92%, transparent);
+    }
+
+    .item-admin-tools .icon-btn i {
+      width: 18px;
+      height: 18px;
+    }
+
+    .feature-add-tile {
+      min-height: 72px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px dashed color-mix(in srgb, var(--primary) 45%, var(--line));
+      border-radius: var(--radius);
+      color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 7%, var(--surface-strong));
+      font-weight: 850;
+    }
+
+    .feature-add-tile:hover {
+      color: #fff;
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
     .feature-icon {
       width: 52px;
       height: 52px;
@@ -2296,6 +2348,7 @@
       sectionDraft: null,
       sectionDraftIndex: null,
       sectionDraftPageId: null,
+      itemDraftIndex: null,
       searchQuery: "",
       activeAccordion: {},
       unsub: {
@@ -2797,6 +2850,20 @@
       `;
     }
 
+    function renderItemAdminTools(pageId, sectionIndex, itemIndex, label = "عنصر") {
+      if (!state.user) return "";
+      return `
+        <div class="item-admin-tools" aria-label="إدارة ${escapeAttr(label)}">
+          <button class="icon-btn" type="button" data-action="open-item-editor" data-page-id="${escapeAttr(pageId)}" data-index="${sectionIndex}" data-item="${itemIndex}" aria-label="تعديل ${escapeAttr(label)}">
+            <i data-lucide="pencil"></i>
+          </button>
+          <button class="icon-btn danger" type="button" data-action="delete-section-item" data-page-id="${escapeAttr(pageId)}" data-index="${sectionIndex}" data-item="${itemIndex}" aria-label="حذف ${escapeAttr(label)}">
+            <i data-lucide="trash-2"></i>
+          </button>
+        </div>
+      `;
+    }
+
     function renderFeatureSection(section, pageId, index, tools) {
       const items = visibleSectionItems(section.items);
       return `
@@ -2804,8 +2871,9 @@
           ${tools}
           <div class="container">
             <div class="feature-strip">
-              ${items.map((item) => `
+              ${items.map((item, itemIndex) => `
                 <div class="feature-item">
+                  ${renderItemAdminTools(pageId, index, itemIndex, "الميزة")}
                   <span class="feature-icon">
                     ${item.imageUrl ? `<img src="${escapeAttr(item.imageUrl)}" alt="">` : `<i data-lucide="check"></i>`}
                   </span>
@@ -2815,6 +2883,12 @@
                   </span>
                 </div>
               `).join("")}
+              ${state.user ? `
+                <button class="feature-add-tile" type="button" data-action="add-card-item" data-page-id="${escapeAttr(pageId)}" data-index="${index}" data-after="${items.length - 1}">
+                  <i data-lucide="plus"></i>
+                  <span>إضافة ميزة</span>
+                </button>
+              ` : ""}
             </div>
           </div>
         </section>
@@ -2831,6 +2905,7 @@
             <div class="card-grid">
               ${items.map((item, itemIndex) => `
                 <article class="content-card">
+                  ${renderItemAdminTools(pageId, index, itemIndex, "الكارت")}
                   <button class="card-media ${item.shape === "square" ? "square" : ""}" type="button" data-action="open-lightbox" data-page-id="${escapeAttr(pageId)}" data-index="${index}" data-item="${itemIndex}">
                     <img src="${escapeAttr(item.coverUrl || item.imageUrl || visual(item.title || "عمل"))}" alt="${escapeAttr(item.title || "")}">
                     ${item.insideUrl ? `<span class="inner-thumb"><img src="${escapeAttr(item.insideUrl)}" alt=""></span>` : ""}
@@ -3372,6 +3447,7 @@
       }
       const content = state.modal.type === "login" ? renderLoginModal()
         : state.modal.type === "section" ? renderSectionModal()
+        : state.modal.type === "item" ? renderItemModal()
         : state.modal.type === "page" ? renderPageModal()
         : state.modal.type === "lightbox" ? renderLightboxModal()
         : "";
@@ -3706,6 +3782,137 @@
       `;
     }
 
+    function renderItemModal() {
+      const pageId = state.sectionDraftPageId || state.modal?.pageId;
+      const page = findPage(pageId);
+      const sectionIndex = Number(state.sectionDraftIndex ?? state.modal?.sectionIndex);
+      const section = state.sectionDraft || structuredClone(ensureItems(page?.sections)[sectionIndex] || createBlankSection("cards"));
+      const itemIndex = Number(state.itemDraftIndex ?? state.modal?.itemIndex ?? 0);
+      const item = ensureItems(section.items)[itemIndex] || blankItemForType(section.type || "cards");
+      const label = section.type === "features" ? "الميزة" : section.type === "cards" ? "الكارت" : "العنصر";
+      return `
+        <div class="modal wide" role="dialog" aria-modal="true" aria-labelledby="itemModalTitle" data-modal-box>
+          <div class="modal-head">
+            <h2 id="itemModalTitle">تعديل ${label}</h2>
+            <button class="icon-btn" type="button" data-action="close-modal" aria-label="إغلاق"><i data-lucide="x"></i></button>
+          </div>
+          <form class="modal-body form-grid" data-form="item">
+            ${renderSingleItemFields(item, itemIndex, section.type)}
+            <div class="actions-row">
+              <button class="tool-btn" type="submit">
+                <i data-lucide="save"></i>
+                حفظ ${label}
+              </button>
+              <button class="tool-btn danger" type="button" data-action="delete-section-item" data-page-id="${escapeAttr(pageId)}" data-index="${sectionIndex}" data-item="${itemIndex}">
+                <i data-lucide="trash-2"></i>
+                حذف ${label}
+              </button>
+              <button class="tool-btn ghost" type="button" data-action="close-modal">إلغاء</button>
+            </div>
+          </form>
+        </div>
+      `;
+    }
+
+    function renderSingleItemFields(item, index, type = "gallery") {
+      if (type === "features") {
+        return `
+          <div class="two-cols">
+            <div class="field">
+              <label>الكلمة / العنوان</label>
+              <input value="${escapeAttr(item.title || "")}" data-item-field="title" data-index="${index}">
+            </div>
+            <div class="field">
+              <label>وصف صغير</label>
+              <input value="${escapeAttr(item.text || "")}" data-item-field="text" data-index="${index}">
+            </div>
+          </div>
+          <div class="two-cols">
+            <div class="image-preview-card compact">
+              <img id="itemImagePreview-${index}" src="${escapeAttr(item.imageUrl || visual(item.title || "ميزة"))}" alt="">
+            </div>
+            <div class="field">
+              <label>صورة صغيرة</label>
+              <input value="${escapeAttr(item.imageUrl || "")}" data-item-field="imageUrl" data-index="${index}">
+              <input type="file" accept="image/*" data-action="upload-item-image" data-index="${index}">
+            </div>
+          </div>
+        `;
+      }
+
+      if (type === "cards") {
+        return `
+          <div class="two-cols">
+            <div class="field">
+              <label>العنوان</label>
+              <input value="${escapeAttr(item.title || "")}" data-item-field="title" data-index="${index}">
+            </div>
+            <div class="field">
+              <label>الشكل</label>
+              <select data-item-field="shape" data-index="${index}">
+                <option value="rectangle" ${item.shape !== "square" ? "selected" : ""}>مستطيل</option>
+                <option value="square" ${item.shape === "square" ? "selected" : ""}>مربع</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label>الوصف</label>
+            <textarea data-item-field="text" data-index="${index}">${escapeHtml(item.text || "")}</textarea>
+          </div>
+          <div class="two-cols">
+            <div class="image-preview-card compact">
+              <img id="itemCoverPreview-${index}" src="${escapeAttr(item.coverUrl || item.imageUrl || visual(item.title || "غلاف"))}" alt="">
+            </div>
+            <div class="field">
+              <label>صورة الغلاف الخارجي</label>
+              <input value="${escapeAttr(item.coverUrl || item.imageUrl || "")}" data-item-field="coverUrl" data-index="${index}">
+              <input type="file" accept="image/*" data-action="upload-item-field-image" data-field="coverUrl" data-index="${index}">
+            </div>
+          </div>
+          <div class="two-cols">
+            <div class="image-preview-card compact">
+              <img id="itemInsidePreview-${index}" src="${escapeAttr(item.insideUrl || visual(item.title || "داخل"))}" alt="">
+            </div>
+            <div class="field">
+              <label>صورة الغلاف الداخلي</label>
+              <input value="${escapeAttr(item.insideUrl || "")}" data-item-field="insideUrl" data-index="${index}">
+              <input type="file" accept="image/*" data-action="upload-item-field-image" data-field="insideUrl" data-index="${index}">
+            </div>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="two-cols">
+          <div class="field">
+            <label>العنوان</label>
+            <input value="${escapeAttr(item.title || "")}" data-item-field="title" data-index="${index}">
+          </div>
+          <div class="field">
+            <label>الشكل</label>
+            <select data-item-field="shape" data-index="${index}">
+              <option value="rectangle" ${item.shape !== "square" ? "selected" : ""}>مستطيل</option>
+              <option value="square" ${item.shape === "square" ? "selected" : ""}>مربع</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label>الوصف</label>
+          <textarea data-item-field="text" data-index="${index}">${escapeHtml(item.text || "")}</textarea>
+        </div>
+        <div class="two-cols">
+          <div class="image-preview-card compact">
+            <img id="itemImagePreview-${index}" src="${escapeAttr(item.imageUrl || visual(item.title || "عنصر"))}" alt="">
+          </div>
+          <div class="field">
+            <label>لينك الصورة</label>
+            <input value="${escapeAttr(item.imageUrl || "")}" data-item-field="imageUrl" data-index="${index}">
+            <input type="file" accept="image/*" data-action="upload-item-image" data-index="${index}">
+          </div>
+        </div>
+      `;
+    }
+
     function renderPageModal() {
       const page = findPage(state.modal.pageId);
       if (!page) return "";
@@ -3776,6 +3983,7 @@
         if (formType === "page") await addPage(data);
         if (formType === "edit-page") await editPage(form.dataset.pageId, data);
         if (formType === "section") await saveSectionDraft();
+        if (formType === "item") await saveItemDraft();
         if (formType === "contact-message") await sendContactMessage(data, form);
         if (formType === "review") await sendReview(data, form);
         if (formType === "survey") await sendSurvey(data, form);
@@ -3876,6 +4084,12 @@
       }
       if (action === "delete-section") {
         deleteSection(actionEl.dataset.pageId, Number(actionEl.dataset.index));
+      }
+      if (action === "open-item-editor") {
+        openItemEditor(actionEl.dataset.pageId, Number(actionEl.dataset.index), Number(actionEl.dataset.item));
+      }
+      if (action === "delete-section-item") {
+        deleteSectionItem(actionEl.dataset.pageId, Number(actionEl.dataset.index), Number(actionEl.dataset.item));
       }
       if (action === "move-section") {
         moveSection(actionEl.dataset.pageId, Number(actionEl.dataset.index), Number(actionEl.dataset.dir));
@@ -4001,6 +4215,7 @@
       if (event.target.dataset.itemField) {
         const index = Number(event.target.dataset.index);
         state.sectionDraft.items = ensureItems(state.sectionDraft.items);
+        if (!state.sectionDraft.items[index]) state.sectionDraft.items[index] = blankItemForType(state.sectionDraft.type || "cards");
         state.sectionDraft.items[index] = {
           ...state.sectionDraft.items[index],
           [event.target.dataset.itemField]: event.target.value
@@ -4035,6 +4250,7 @@
         previewLocalFile(itemPreviewId(field, index), file);
         const url = await uploadImage(file);
         state.sectionDraft.items = ensureItems(state.sectionDraft.items);
+        if (!state.sectionDraft.items[index]) state.sectionDraft.items[index] = blankItemForType(state.sectionDraft.type || "cards");
         state.sectionDraft.items[index] = { ...state.sectionDraft.items[index], [field]: url };
         if (field === "coverUrl" && !state.sectionDraft.items[index].imageUrl) {
           state.sectionDraft.items[index].imageUrl = url;
@@ -4264,20 +4480,74 @@
       const section = sections[sectionIndex];
       if (!section) throw new Error("السيكشن غير موجود.");
       const items = ensureItems(section.items);
-      items.splice(afterIndex + 1, 0, blankItemForType(section.type || "cards"));
+      const newIndex = Math.max(0, Number(afterIndex) + 1);
+      items.splice(newIndex, 0, blankItemForType(section.type || "cards"));
       section.items = items;
       sections[sectionIndex] = section;
       page.sections = sections;
       state.sectionDraft = structuredClone(section);
       state.sectionDraftIndex = sectionIndex;
       state.sectionDraftPageId = pageId;
-      state.modal = { type: "section" };
+      state.itemDraftIndex = newIndex;
+      state.modal = { type: "item", pageId, sectionIndex, itemIndex: newIndex };
       renderApp();
       await setDoc(doc(db, "sitePages", pageId), {
         ...page,
         sections,
         updatedAt: serverTimestamp()
       }, { merge: true });
+      showToast("تم إضافة عنصر جديد. اكتب بياناته واحفظ.");
+    }
+
+    function openItemEditor(pageId, sectionIndex, itemIndex) {
+      requireAdmin();
+      const page = findPage(pageId);
+      if (!page) return;
+      const section = ensureItems(page.sections)[sectionIndex];
+      if (!section) return;
+      state.sectionDraft = structuredClone(section);
+      state.sectionDraftIndex = sectionIndex;
+      state.sectionDraftPageId = pageId;
+      state.itemDraftIndex = itemIndex;
+      state.modal = { type: "item", pageId, sectionIndex, itemIndex };
+      renderApp();
+    }
+
+    async function saveItemDraft() {
+      requireAdmin();
+      const page = findPage(state.sectionDraftPageId);
+      if (!page) throw new Error("الصفحة غير موجودة.");
+      const sections = ensureItems(page.sections);
+      const sectionIndex = Number(state.sectionDraftIndex);
+      if (!sections[sectionIndex]) throw new Error("السيكشن غير موجود.");
+      sections[sectionIndex] = cleanSection(state.sectionDraft);
+      await setDoc(doc(db, "sitePages", page.id), {
+        ...page,
+        sections,
+        updatedAt: serverTimestamp()
+      }, { merge: true });
+      state.modal = null;
+      state.itemDraftIndex = null;
+      showToast("تم حفظ العنصر.");
+      renderApp();
+    }
+
+    async function deleteSectionItem(pageId, sectionIndex, itemIndex) {
+      requireAdmin();
+      const page = findPage(pageId);
+      if (!page) throw new Error("الصفحة غير موجودة.");
+      const sections = ensureItems(page.sections);
+      const section = sections[sectionIndex];
+      if (!section) throw new Error("السيكشن غير موجود.");
+      const label = section.type === "features" ? "الميزة" : section.type === "cards" ? "الكارت" : "العنصر";
+      if (!confirm(`متأكد من حذف ${label}؟`)) return;
+      section.items = ensureItems(section.items).filter((_, index) => index !== itemIndex);
+      sections[sectionIndex] = section;
+      await updateDoc(doc(db, "sitePages", pageId), { sections, updatedAt: serverTimestamp() });
+      state.modal = null;
+      state.itemDraftIndex = null;
+      showToast(`تم حذف ${label}.`);
+      renderApp();
     }
 
     async function saveSectionDraft() {
